@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/atherdon/amazon-ses-service/issues"
   },
-  "homepage": "https://github.com/atherdon/amazon-ses-service#readme"
+  "homepage": "https://github.com/atherdon/amazon-ses-service#readme",
+  "dependencies": {
+    "aws-sdk": "^2.643.0"
+  }
 }

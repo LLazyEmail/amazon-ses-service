@@ -1,6 +1,8 @@
 require('dotenv').config()
 const AWS = require('aws-sdk')
 const addresses = require('./addresses');
+const testHtml = require('./examples/1');
+// console.log(testHtml);
 
 const SESConfig = {
     apiVersion: '2010-12-01',
@@ -17,8 +19,7 @@ const params = {
         Body: {
             Html: {
                 Charset: 'UTF-8',
-                Data:
-                    'This message body contains HTML formatting, like <a class="ulink" target="_blank">hi</a>.'
+                Data: testHtml
             },
             Text: {
                 Charset: 'UTF-8',
@@ -34,15 +35,15 @@ const params = {
     Source: process.env.SOURCE
 };
 
-const sendEmail = () =>{
-    try{
+const sendEmail = () => {
+    try {
         //call one send Email for one recipients
         //@TODO improve this code
-        new AWS.SES(SESConfig).sendEmail(params).promise().then((res)=>{
+        new AWS.SES(SESConfig).sendEmail(params).promise().then((res) => {
             console.log("res", res);
         })
-        
-    }catch{
+
+    } catch{
         console.log('err');
     }
 };

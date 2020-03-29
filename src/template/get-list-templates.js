@@ -1,18 +1,21 @@
-const getListTemplates = async () => {
+const AWS = require('aws-sdk');
+
+const getListTemplates = async ({ SESConfig }) => {
     try {
-        let templatePromise = await new AWS.SES(SESConfig).listTemplates({ MaxItems: 5 }).promise();
-        console.log(templatePromise);
-        
+        let listTemplates = await new AWS.SES(SESConfig).listTemplates({ MaxItems: 5 }).promise();
+        // console.log(listTemplates);
+
+        return listTemplates
         // templatePromise.then((data) => {
         //     console.log("data", data);
 
         // }).catch((err) =>{
         //     console.log(err);
         // })
-    } catch{
-        console.log("error");
-        
+    } catch (err) {
+        console.log("error", err);
+
     }
 }
 
-module.exports = getListTemplates;
+module.exports = { getListTemplates };

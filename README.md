@@ -23,3 +23,27 @@ module.exports = [
     'example@com'
 ]
 ```
+
+```
+POST request /template/get-template
+
+body json 
+{
+	"name" : "MyTemplate1"
+}
+```
+
+POST request
+
+```
+localhost:3000/email/send
+and 
+localhost:3000/email/send-templated
+body json 
+{
+    addresses:[
+        "example1@g.com",
+        "example2@g.com"
+    ]
+}
+```

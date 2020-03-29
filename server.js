@@ -1,8 +1,11 @@
 require('dotenv').config()
-const AWS = require('aws-sdk')
 const addresses = require('./addresses');
-const testHtml = require('./examples/1');
+const { sendTemplatedEmail } = require('./src/email');
+
+// const addresses = require('./addresses');
+const htmlTemplate = require('./examples/1');
 // console.log(testHtml);
+const { createTemplate, getListTemplates, getEmailTemplate, updateTemplate } = require('./src/template');
 
 const SESConfig = {
     apiVersion: '2010-12-01',
@@ -11,41 +14,69 @@ const SESConfig = {
     region: process.env.AWS_REGION
 }
 
-const params = {
-    Destination: {
-        ToAddresses: addresses
-    },
-    Message: {
-        Body: {
-            Html: {
-                Charset: 'UTF-8',
-                Data: testHtml
-            },
-            Text: {
-                Charset: 'UTF-8',
-                Data: 'This is the message body in text format.'
-            }
+// working code
+
+
+const start = async () => {
+    // working
+
+    // const templates = await getListTemplates({
+    //     SESConfig
+    // })
+    // console.log(templates);
+
+    // --------------------
+    // const template = await getEmailTemplate({ SESConfig, templateName: 'MyTemplate' });
+    // console.log(template);
+
+    // -------
+    // let params = {
+    //     Template: {
+    //         TemplateName: 'MyTemplate1',
+    //         SubjectPart: 'Greetings, {{name}}!',
+    //         HtmlPart: htmlTemplate,
+    //         TextPart: "Dear {{name}},\r\nYour favorite animal is {{favoriteanimal}}."
+    //     }
+    // }
+
+    // const response = await createTemplate({ SESConfig, params })
+    // console.log(response);
+    // -----
+    // let params = {
+    //     Template: {
+    //         TemplateName: 'MyTemplate1',
+    //         SubjectPart: 'Greetings, {{name}}!',
+    //         HtmlPart: htmlTemplate,
+    //         TextPart: "Dear {{name}},\r\nYour favorite animal is {{favoriteanimal}}."
+    //     }
+    // }
+
+    // const result = await updateTemplate({ SESConfig, params });
+    // console.log(result);
+
+    // -----
+    // ------------------------------------------
+    let params = {
+        Source: process.env.SOURCE,
+        Template: "MyTemplate1",
+        Destination: {
+            ToAddresses: [...addresses]
         },
-        Subject: {
-            Charset: 'UTF-8',
-            Data: 'Test email from code'
-        }
-    },
-    ReturnPath: process.env.RETURN_PATH,
-    Source: process.env.SOURCE
-};
-
-const sendEmail = () => {
-    try {
-        //call one send Email for one recipients
-        //@TODO improve this code
-        new AWS.SES(SESConfig).sendEmail(params).promise().then((res) => {
-            console.log("res", res);
+        TemplateData: JSON.stringify({
+            name: "Arthur!!! - sended template usnig aws template",
+            favoriteanimal: "dog", 
+            htmlList: `<ul style="color: red;"><li>First</li><li>Second</li></ul>`
         })
-
-    } catch{
-        console.log('err');
     }
-};
+    sendTemplatedEmail({
+        SESConfig,
+        params
+    })
 
-sendEmail()
+
+}
+
+start()
+
+
+

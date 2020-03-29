@@ -9,9 +9,15 @@ const SESConfig = {
 
 const sendEmailController = async (req, res, next) => {
     try {
+        if(req.body.addresses){
+            const ToAddresses = [...req.body.addresses];
 
-        const result = await sendEmail({ SESConfig })
-        res.send(result)
+            const result = await sendEmail({ SESConfig, ToAddresses })
+            res.send(result)
+        }else{
+            return next("Error addressess undefined")
+        }
+        
     } catch (err) {
         return next("Server error sendEmail")
     }
@@ -19,24 +25,30 @@ const sendEmailController = async (req, res, next) => {
 
 const sendTemplatedEmailController = async (req, res, next) => {
     try {
-        let params = {
-            Source: process.env.SOURCE,
-            Template: "MyTemplate1",
-            Destination: {
-                ToAddresses: ["vadim.putrov@gmail.com"]
-            },
-            TemplateData: JSON.stringify({
-                name: "Vadim",
-                favoriteanimal: "dog",
-                htmlList: `<ul style="color: red;"><li>First</li><li>Second</li></ul>`
-            })
-        }
-        const result = await sendTemplatedEmail({
-            SESConfig,
-            params
-        });
+        if(req.body.addresses){
 
-        res.send(result);
+            let params = {
+                Source: process.env.SOURCE,
+                Template: "MyTemplate1",
+                Destination: {
+                    ToAddresses: [...req.body.addresses]
+                },
+                TemplateData: JSON.stringify({
+                    name: "Vadim",
+                    favoriteanimal: "dog",
+                    htmlList: `<ul style="color: red;"><li>First</li><li>Second</li></ul>`
+                })
+            }
+            const result = await sendTemplatedEmail({
+                SESConfig,
+                params
+            });
+            
+            res.send(result);
+        }else{
+            return next("Error addresses undefined")
+        }
+        
     }catch(err){
         return next("Server error sendTemplatedEmail")
     }

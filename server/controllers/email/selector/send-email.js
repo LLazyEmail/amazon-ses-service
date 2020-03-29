@@ -1,10 +1,10 @@
 const testHtml = require('../../../../examples/2');
 const AWS = require('aws-sdk');
 
-const sendEmail = ({ SESConfig }) => {
+const sendEmail = ({ SESConfig, ToAddresses }) => {
     const params = {
         Destination: {
-            ToAddresses: ["vadim.putrov@gmail.com"]
+            ToAddresses
         },
         Message: {
             Body: {

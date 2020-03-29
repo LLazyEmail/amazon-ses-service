@@ -2,11 +2,11 @@ const AWS = require('aws-sdk');
 
 const createTemplate = async ({ SESConfig, params }) => {
     try {
-        const templatePromise = await new AWS.SES(SESConfig).createTemplate(params).promise();
-        console.log(templatePromise);
-        return templatePromise;
+        return await new AWS.SES(SESConfig).createTemplate(params).promise();
+
     } catch (err) {
-        console.log(err);
+       console.log("error", err);
+       
     }
 }
 

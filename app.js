@@ -1,5 +1,5 @@
 require('dotenv').config();
-let express = require('express');
+let express = require('express')
 const bodyParser = require('body-parser')
 let app = express();
 
@@ -35,8 +35,7 @@ const start = async () => {
     // console.log(templates);
 
     // --------------------
-    // const template = await getEmailTemplate({ SESConfig, templateName: 'MyTemplate' });
-    // console.log(template);
+
 
     // -------
 

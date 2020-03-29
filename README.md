@@ -47,3 +47,13 @@ body json
     ]
 }
 ```
+
+GET requests 
+
+```
+localhost:3000/email/send-templated?addresses=["example@g.com"]
+```
+
+```
+localhost:3000/email/send?addresses=["example@g.com"]
+```

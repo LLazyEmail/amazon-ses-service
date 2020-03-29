@@ -1,0 +1,29 @@
+{
+  "name": "amazon-ses-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atherdon/amazon-ses-service.git"
+  },
+  "author": "Arthur",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/atherdon/amazon-ses-service/issues"
+  },
+  "homepage": "https://github.com/atherdon/amazon-ses-service#readme",
+  "dependencies": {
+    "aws-sdk": "^2.643.0",
+    "dotenv": "^8.2.0",
+    "eslint": "^6.8.0",
+    "jest": "^25.1.0",
+    "lodash": "^4.17.15",
+    "nodemon": "^2.0.2",
+    "prettier": "^2.0.1"
+  }
+}

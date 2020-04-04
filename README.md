@@ -35,9 +35,8 @@ body json
 
 ---
 
-POST requests
 
-### To send simple email:
+### To send simple email (POST requests):
 
 ```
 localhost:3000/email/send
@@ -53,7 +52,7 @@ JSON object should be like this(soon will be added this feature):
 
 ---
 
-### To send templated email:
+### To send templated email (POST requests):
 
 ```
 
@@ -76,7 +75,7 @@ JSON should be like this:
 
 ---
 
-### Create template:
+### Create template (POST requests):
 
 ```
 localhost:3000/template/create
@@ -90,7 +89,7 @@ JSON:
 ```
 ---
 
-### Update template: 
+### Update template (PUT request): 
 
 ```
 localhost:3000/template/update-template
@@ -105,7 +104,7 @@ JSON:
 
 ---
 
-### Get list of all templates:
+### Get list of all templates (POST requests):
 
 ```
 localhost:3000/template/get-list-templates
@@ -119,7 +118,7 @@ JSON:
 ```
 ---
 
-### Get template by Name:
+### Get template by Name (POST requests):
 
 ```
 localhost:3000/template/get-template
@@ -133,8 +132,19 @@ JSON:
 ```
 
 ---
+### Delete template (DELETE request):
 
+```
+localhost:3000/template/delete
+```
+JSON:
 
+```
+{
+	"TemplateName": "TEST_TEMPLATE1"
+}
+```
+---
 
 GET requests
 

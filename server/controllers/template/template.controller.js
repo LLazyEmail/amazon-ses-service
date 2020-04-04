@@ -1,4 +1,10 @@
-const { createTemplate, getEmailTemplate, getListTemplates, updateTemplate } = require('./selector')
+const {
+    createTemplate,
+    getEmailTemplate,
+    getListTemplates,
+    updateTemplate,
+    deleteTemplate
+} = require('./selector')
 
 const createTemplateController = async (req, res, next) => {
     try {
@@ -42,4 +48,19 @@ const updateTemplateController = async (req, res, next) => {
         return next("Server error", err)
     }
 }
-module.exports = { createTemplateController, getEmailTemplateController, getListTemplatesController, updateTemplateController }
+
+const deleteTemplateController = async (req, res, next) => {
+    try {
+        const result = await deleteTemplate({ ...req.body });
+        res.send(result)
+    } catch (err) {
+        console.log("err", err);
+    }
+}
+module.exports = {
+    createTemplateController,
+    getEmailTemplateController,
+    getListTemplatesController,
+    updateTemplateController,
+    deleteTemplateController
+}

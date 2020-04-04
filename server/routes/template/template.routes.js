@@ -1,14 +1,16 @@
 const express = require('express');
 const router = express.Router();
-const { createTemplateController,
+const { 
+    createTemplateController,
     getEmailTemplateController,
     getListTemplatesController,
-    updateTemplateController 
+    updateTemplateController,
+    deleteTemplateController
 } = require('../../controllers/template/template.controller');
 
 router.post('/create', createTemplateController)
 router.post('/get-template', getEmailTemplateController);
 router.post('/get-list-templates', getListTemplatesController)
-router.post('/update-template', updateTemplateController)
-
+router.put('/update-template', updateTemplateController)
+router.delete('/delete', deleteTemplateController)
 module.exports = router;

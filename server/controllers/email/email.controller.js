@@ -34,6 +34,7 @@ const sendTemplatedEmailController = async (req, res, next) => {
                 TemplateData: JSON.stringify({
                     name: "Vadim",
                     animal: getItems(),
+                    favoriteanimal: "Cat",
                     htmlList: list
                 })
             }

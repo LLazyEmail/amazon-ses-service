@@ -18,7 +18,7 @@ const createTemplateController = async (req, res, next) => {
 const getEmailTemplateController = async (req, res, next) => {
     console.log(req.body.name);
     try {
-        if (req.body.name) {
+        if (req.body.TemplateName) {
             const template = await getEmailTemplate({ ...req.body });
             res.send(template)
         } else {

@@ -1,5 +1,9 @@
+const items = require('./item.json');
+
+// console.log(items);
+
 const getItems = () => {
-    const items = ["cat", "dog"];
+    
     let concatenetedItems = "";
     items.forEach((item) => {
         concatenetedItems += " " + item

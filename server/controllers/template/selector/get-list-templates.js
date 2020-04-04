@@ -1,9 +1,14 @@
 const AWS = require('aws-sdk');
 
-const getListTemplates = async ({ SESConfig }) => {
+const { SESConfig } = require('../../../../config');
+
+const getListTemplates = async ({ MaxItems = 5 }) => {
     try {
-        let listTemplates = await new AWS.SES(SESConfig).listTemplates({ MaxItems: 5 }).promise();
+        console.log('In try');
+        
+        let listTemplates = await new AWS.SES(SESConfig).listTemplates({ MaxItems }).promise();
         // console.log(listTemplates);
+        console.log(listTemplates);
 
         return listTemplates
         // templatePromise.then((data) => {

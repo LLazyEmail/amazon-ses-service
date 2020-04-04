@@ -27,15 +27,6 @@ const server = app.listen(process.env.PORT || 3000, () => {
 })
 
 const start = async () => {
-    // working
-
-    // const templates = await getListTemplates({
-    //     SESConfig
-    // })
-    // console.log(templates);
-
-    // --------------------
-
 
     // -------
 

@@ -27,28 +27,116 @@ module.exports = [
 ```
 POST request /template/get-template
 
-body json 
+body json
 {
 	"name" : "MyTemplate1"
 }
 ```
 
-POST request
+---
+
+POST requests
+
+### To send simple email:
 
 ```
 localhost:3000/email/send
-and 
-localhost:3000/email/send-templated
-body json 
+```
+
+JSON object should be like this(soon will be added this feature):
+
+```
 {
-    addresses:[
+
+}
+```
+
+---
+
+### To send templated email:
+
+```
+
+localhost:3000/email/send-templated
+
+```
+
+JSON should be like this:
+
+```
+{
+    "addresses":[
         "example1@g.com",
         "example2@g.com"
     ]
 }
 ```
 
-GET requests 
+## Managing templates
+
+---
+
+### Create template:
+
+```
+localhost:3000/template/create
+```
+JSON:
+
+```
+{
+    "TemplateName": "MyTemplate" 
+}
+```
+---
+
+### Update template: 
+
+```
+localhost:3000/template/update-template
+```
+JSON:
+
+```
+{
+    "TemplateName": "MyTemplate"
+}
+```
+
+---
+
+### Get list of all templates:
+
+```
+localhost:3000/template/get-list-templates
+```
+JSON:
+
+```
+{
+
+}
+```
+---
+
+### Get template by Name:
+
+```
+localhost:3000/template/get-template
+
+```
+JSON:
+```
+{
+	"TemplateName": "MyTemplate123"
+}
+```
+
+---
+
+
+
+GET requests
 
 ```
 localhost:3000/email/send-templated?addresses=["example@g.com"]

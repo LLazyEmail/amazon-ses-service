@@ -1,7 +1,7 @@
 const AWS = require('aws-sdk');
 
 const { SESConfig } = require('../../../../config');
-const htmlTemplate = require('../../../../examples/2');
+const htmlTemplate = require('../../../../examples/1');
 
 const updateTemplate = async ({ TemplateName }) => {
     let params = {

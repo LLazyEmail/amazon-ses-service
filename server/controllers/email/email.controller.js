@@ -1,4 +1,5 @@
 const { sendEmail, sendTemplatedEmail } = require('./selector');
+const list = require('./components/List/list');
 
 
 const sendEmailController = async (req, res, next) => {
@@ -19,6 +20,7 @@ const sendEmailController = async (req, res, next) => {
 
 const sendTemplatedEmailController = async (req, res, next) => {
     try {
+
         if (req.body.addresses) {
 
             let params = {
@@ -30,7 +32,7 @@ const sendTemplatedEmailController = async (req, res, next) => {
                 TemplateData: JSON.stringify({
                     name: "Vadim",
                     favoriteanimal: "dog",
-                    htmlList: `<ul style="color: red;"><li>First</li><li>Second</li></ul>`
+                    htmlList: list
                 })
             }
             const result = await sendTemplatedEmail({ params });

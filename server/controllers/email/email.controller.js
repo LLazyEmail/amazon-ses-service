@@ -1,6 +1,5 @@
 const { sendEmail, sendTemplatedEmail } = require('./selector');
-const list = require('./components/List/list');
-const { getItems } = require('./components/Items/items');
+
 
 
 const sendEmailController = async (req, res, next) => {
@@ -22,31 +21,12 @@ const sendEmailController = async (req, res, next) => {
 const sendTemplatedEmailController = async (req, res, next) => {
     try {
 
-
-        if (req.body.addresses) {
-
-            let params = {
-                Source: process.env.SOURCE,
-                Template: "MyTemplate1",
-                Destination: {
-                    ToAddresses: [...req.body.addresses]
-                },
-                TemplateData: JSON.stringify({
-                    name: "Vadim",
-                    animal: getItems(),
-                    favoriteanimal: "Cat",
-                    htmlList: list
-                })
-            }
-            // console.log();
-            
-            const result = await sendTemplatedEmail({ params });
-
-            res.send(result);
-        } else {
-            return next("Error addresses undefined")
+        if (!req.body.addresses) {
+            return next("Error addresses not specified")
         }
 
+        const result = await sendTemplatedEmail({ ...req.body });
+        res.send(result);
     } catch (err) {
         return next("Server error sendTemplatedEmail")
     }

@@ -22,6 +22,14 @@ const sendTemplatedEmail = ({ addresses, TemplateName }) => {
         }
 
         return new AWS.SES(SESConfig).sendTemplatedEmail(params).promise();
+
+        // ses.sendEmail(params, (err, data) => {
+        //     if (err) {
+        //         return console.log(err, err.stack);
+        //     } else {
+        //         console.log("Email sent.", data);
+        //     }
+        // });
     } catch (err) {
         console.log("err", err);
     }

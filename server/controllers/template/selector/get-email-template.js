@@ -1,6 +1,7 @@
 const AWS = require('aws-sdk');
+const { SESConfig } = require('../../../../config');
 
-const getEmailTemplate = async ({ SESConfig, templateName }) => {
+const getEmailTemplate = async ({ templateName }) => {
     try {
         let template = await new AWS.SES(SESConfig).getTemplate({ TemplateName: templateName }).promise();
         return template;

@@ -1,6 +1,7 @@
 const AWS = require('aws-sdk');
+const { SESConfig } = require('../../../../config');
 
-const sendTemplatedEmail = ({SESConfig, params}) => {
+const sendTemplatedEmail = ({ params }) => {
     try {
         return new AWS.SES(SESConfig).sendTemplatedEmail(params).promise();
     } catch (err) {

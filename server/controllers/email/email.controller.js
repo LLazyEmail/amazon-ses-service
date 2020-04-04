@@ -1,23 +1,17 @@
 const { sendEmail, sendTemplatedEmail } = require('./selector');
 
-const SESConfig = {
-    apiVersion: '2010-12-01',
-    accessKeyId: process.env.ACCESS_KEY_ID,
-    secretAccessKey: process.env.SECRET_ACCESS_KEY,
-    region: process.env.AWS_REGION
-}
 
 const sendEmailController = async (req, res, next) => {
     try {
-        if(req.body.addresses){
+        if (req.body.addresses) {
             const ToAddresses = [...req.body.addresses];
 
-            const result = await sendEmail({ SESConfig, ToAddresses })
+            const result = await sendEmail({ ToAddresses })
             res.send(result)
-        }else{
+        } else {
             return next("Error addressess undefined")
         }
-        
+
     } catch (err) {
         return next("Server error sendEmail")
     }
@@ -25,7 +19,7 @@ const sendEmailController = async (req, res, next) => {
 
 const sendTemplatedEmailController = async (req, res, next) => {
     try {
-        if(req.body.addresses){
+        if (req.body.addresses) {
 
             let params = {
                 Source: process.env.SOURCE,
@@ -39,17 +33,14 @@ const sendTemplatedEmailController = async (req, res, next) => {
                     htmlList: `<ul style="color: red;"><li>First</li><li>Second</li></ul>`
                 })
             }
-            const result = await sendTemplatedEmail({
-                SESConfig,
-                params
-            });
-            
+            const result = await sendTemplatedEmail({ params });
+
             res.send(result);
-        }else{
+        } else {
             return next("Error addresses undefined")
         }
-        
-    }catch(err){
+
+    } catch (err) {
         return next("Server error sendTemplatedEmail")
     }
 }

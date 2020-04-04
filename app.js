@@ -1,5 +1,5 @@
 require('dotenv').config();
-let express = require('express');
+let express = require('express')
 const bodyParser = require('body-parser')
 let app = express();
 
@@ -27,16 +27,6 @@ const server = app.listen(process.env.PORT || 3000, () => {
 })
 
 const start = async () => {
-    // working
-
-    // const templates = await getListTemplates({
-    //     SESConfig
-    // })
-    // console.log(templates);
-
-    // --------------------
-    // const template = await getEmailTemplate({ SESConfig, templateName: 'MyTemplate' });
-    // console.log(template);
 
     // -------
 

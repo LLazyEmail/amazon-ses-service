@@ -1,7 +1,9 @@
-const testHtml = require('../../../../examples/2');
 const AWS = require('aws-sdk');
 
-const sendEmail = ({ SESConfig, ToAddresses }) => {
+const testHtml = require('../../../../examples/2');
+const { SESConfig } = require('../../../../config');
+
+const sendEmail = ({ ToAddresses }) => {
     const params = {
         Destination: {
             ToAddresses
@@ -28,9 +30,9 @@ const sendEmail = ({ SESConfig, ToAddresses }) => {
 
     try {
 
-     return new AWS.SES(SESConfig).sendEmail(params).promise();
+        return new AWS.SES(SESConfig).sendEmail(params).promise();
 
-    } catch(err){
+    } catch (err) {
         console.log('err', err);
     }
 };

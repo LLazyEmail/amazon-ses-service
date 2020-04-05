@@ -1,4 +1,4 @@
-const simpleTemplate = require('../envelops/simple-template');
+const zappierTemplate = require('../envelops/zappier-template');
 
 
 const createTemplate = async ({ TemplateName, ses }) => {
@@ -7,7 +7,7 @@ const createTemplate = async ({ TemplateName, ses }) => {
             Template: {
                 TemplateName: TemplateName || 'test-template',
                 SubjectPart: 'Greetings, {{name}}!',
-                HtmlPart: simpleTemplate,
+                HtmlPart: zappierTemplate,
                 TextPart: "Dear {{name}}"
             }
         }

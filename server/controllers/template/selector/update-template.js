@@ -1,12 +1,12 @@
-const htmlTemplate = require('../../../../examples/1');
+const zappierTemplate = require('../envelops/zappier-template');
 
 const updateTemplate = async ({ TemplateName, ses }) => {
     let params = {
             Template: {
                 TemplateName: TemplateName || "test-template",
                 SubjectPart: 'Greetings, {{name}}!',
-                HtmlPart: htmlTemplate,
-                TextPart: "Dear {{name}},\r\nYour favorite animal is {{favoriteanimal}}."
+                HtmlPart: zappierTemplate,
+                TextPart: "Dear {{name}}."
             }
         }
 

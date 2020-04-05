@@ -1,9 +1,7 @@
-const AWS = require('aws-sdk');
-const { SESConfig } = require('../../../../config');
-const list = require('../components/List/list');
-const { getItems } = require('../components/Items/items');
+const list = require('../../../middleware/List/list');
+const { getItems } = require('../../../middleware/Items/items');
 
-const sendTemplatedEmail = ({ addresses, TemplateName }) => {
+const sendTemplatedEmail = ({ addresses, TemplateName, ses }) => {
     try {
         let templatedData = {
             name: "Vadim",
@@ -21,7 +19,7 @@ const sendTemplatedEmail = ({ addresses, TemplateName }) => {
             TemplateData: JSON.stringify(templatedData)
         }
 
-        return new AWS.SES(SESConfig).sendTemplatedEmail(params).promise();
+        return ses.sendTemplatedEmail(params).promise();
 
         // ses.sendEmail(params, (err, data) => {
         //     if (err) {

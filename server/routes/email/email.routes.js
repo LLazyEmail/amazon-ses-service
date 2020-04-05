@@ -1,10 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const { sendEmailController, sendTemplatedEmailController } = require('../../controllers/email/email.controller');
+const { sendEmailController, sendTemplatedEmailController, testController } = require('../../controllers/email/email.controller');
+const { setAWS } = require('../../middleware/aws-middleware');
 
-router.post('/send', sendEmailController);
-router.post('/send-templated', sendTemplatedEmailController);
-router.get('/send-templated', (req, res, next) => {
+router.get('/test', setAWS, testController)
+router.post('/send', setAWS, sendEmailController);
+router.post('/send-templated', setAWS, sendTemplatedEmailController);
+router.get('/send-templated', setAWS, (req, res, next) => {
     sendTemplatedEmailController({
         body: {
             addresses: JSON.parse(req.query.addresses)

@@ -1,9 +1,7 @@
-const AWS = require('aws-sdk');
-const { SESConfig } = require('../../../../config');
 
-const deleteTemplate = async ({ TemplateName }) => {
+const deleteTemplate = async ({ TemplateName, ses }) => {
     try {
-        const result = await new AWS.SES(SESConfig).deleteTemplate({ TemplateName }).promise();
+        const result = await ses.deleteTemplate({ TemplateName }).promise();
         return result;
     } catch (err) {
         console.log("err", err);

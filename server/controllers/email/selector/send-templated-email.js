@@ -1,11 +1,14 @@
-const list = require('../../../middleware/List/list');
-const { getItems } = require('../../../middleware/Items/items');
+const list = require('../../../middleware/list/list');
+const { getItems } = require('../../../middleware/items/items');
+const { sponsorsBlock } = require('../../../middleware/sponsors-block/sponsorsBlock');
+
 
 const sendTemplatedEmail = ({ Addresses, TemplateName, ses }) => {
     try {
         let templateData = {
             name: "Vadim",
             listItems: getItems(),
+            sponsors: sponsorsBlock
         };
 
         let params = {
@@ -16,6 +19,9 @@ const sendTemplatedEmail = ({ Addresses, TemplateName, ses }) => {
             },
             TemplateData: JSON.stringify(templateData)
         }
+        // console.log(params);
+
+        // return sponsorsBlock;
 
         return ses.sendTemplatedEmail(params).promise();
 

@@ -1,5 +1,8 @@
-const zappierTemplate = require('../envelops/zappier-template');
+// const zappierTemplateHTML = require('../envelops/zappier-template');
+var fs = require('fs');
+const path = require('path');
 
+let zappierTemplate = fs.readFileSync(path.resolve(__dirname, '../envelops/zappier-template.html'), 'utf8')
 
 const createTemplate = async ({ TemplateName, ses }) => {
     try {
@@ -11,7 +14,9 @@ const createTemplate = async ({ TemplateName, ses }) => {
                 TextPart: "Dear {{name}}"
             }
         }
-
+        console.log(params);
+        
+        // return params
         return await ses.createTemplate(params).promise();
 
     } catch (err) {

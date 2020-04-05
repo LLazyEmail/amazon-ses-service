@@ -1,7 +1,8 @@
 const AWS = require('aws-sdk');
+
 const { SESConfig } = require('../../../../config');
-const list = require('../components/List/list');
-const { getItems } = require('../components/Items/items');
+const list = require('../../../middleware/List/list');
+const { getItems } = require('../../../middleware/List/list');
 
 const sendTemplatedEmail = ({ addresses, TemplateName }) => {
     try {

@@ -1,6 +1,8 @@
 const { sendEmail, sendTemplatedEmail } = require('./selector');
 
-
+const testController = async (req,res, next) =>{
+    res.send("Hello")
+}
 
 const sendEmailController = async (req, res, next) => {
     try {
@@ -34,5 +36,6 @@ const sendTemplatedEmailController = async (req, res, next) => {
 
 module.exports = {
     sendEmailController,
-    sendTemplatedEmailController
+    sendTemplatedEmailController,
+    testController
 }

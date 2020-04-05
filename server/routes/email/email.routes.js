@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const { sendEmailController, sendTemplatedEmailController } = require('../../controllers/email/email.controller');
+const { sendEmailController, sendTemplatedEmailController, testController } = require('../../controllers/email/email.controller');
 
+router.get('/test', testController)
 router.post('/send', sendEmailController);
 router.post('/send-templated', sendTemplatedEmailController);
 router.get('/send-templated', (req, res, next) => {

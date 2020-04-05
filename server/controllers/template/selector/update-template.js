@@ -1,9 +1,6 @@
-const AWS = require('aws-sdk');
-
-const { SESConfig } = require('../../../../config');
 const htmlTemplate = require('../../../../examples/1');
 
-const updateTemplate = async ({ TemplateName }) => {
+const updateTemplate = async ({ TemplateName, ses }) => {
     let params = {
             Template: {
                 TemplateName: TemplateName || "test-template",
@@ -14,7 +11,7 @@ const updateTemplate = async ({ TemplateName }) => {
         }
 
     try {
-        const result = new AWS.SES(SESConfig).updateTemplate(params).promise();
+        const result = ses.updateTemplate(params).promise();
         return result;
     } catch (err) {
         console.log("err", err);

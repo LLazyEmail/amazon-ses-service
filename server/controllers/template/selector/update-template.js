@@ -1,8 +1,8 @@
-// const zappierTemplate = require('../envelops/zappier-template');
-var fs = require('fs');
-const path = require('path');
+const zappierTemplate = require('../envelops/zappier-template');
+// var fs = require('fs');
+// const path = require('path');
 
-let zappierTemplate = fs.readFileSync(path.resolve(__dirname, '../envelops/zappier-template.html'), 'utf8');
+// let zappierTemplate = fs.readFileSync(path.resolve(__dirname, '../envelops/zappier-template.html'), 'utf8');
 
 const updateTemplate = async ({ TemplateName, ses }) => {
     let params = {

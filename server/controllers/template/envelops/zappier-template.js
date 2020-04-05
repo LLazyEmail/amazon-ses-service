@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+module.export = `<!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8" />
@@ -12,3 +12,4 @@
     <div>{{sponsors}}</div>
   </body>
 </html>
+`

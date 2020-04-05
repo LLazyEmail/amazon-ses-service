@@ -17,6 +17,34 @@
 
 // return sponsors
 // module.exports = { sponsorsBlock }
+const leftBlockImage = `
+<img
+alt=""
+src="https://gallery.mailchimp.com/b48b0ec2173fecf2586c00e80/images/ad16393c-6f52-441b-9951-0b45c61e543c.png"
+width="282"
+style="
+  max-width: 671px;
+  border: 0;
+  height: auto;
+  outline: none;
+  text-decoration: none;
+  -ms-interpolation-mode: bicubic;
+  vertical-align: bottom;
+"
+class="mcnImage"
+/>
+`
+const leftBlockLink = `<a
+href="http://bit.ly/2NvQJPO"
+title=""
+class=""
+target="_blank"
+style="
+  mso-line-height-rule: exactly;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+"
+>`
 
 module.exports = `
 <table
@@ -107,32 +135,8 @@ module.exports = `
                           -webkit-text-size-adjust: 100%;
                         "
                       >
-                        <a
-                          href="http://bit.ly/2NvQJPO"
-                          title=""
-                          class=""
-                          target="_blank"
-                          style="
-                            mso-line-height-rule: exactly;
-                            -ms-text-size-adjust: 100%;
-                            -webkit-text-size-adjust: 100%;
-                          "
-                        >
-                          <img
-                            alt=""
-                            src="https://gallery.mailchimp.com/b48b0ec2173fecf2586c00e80/images/ad16393c-6f52-441b-9951-0b45c61e543c.png"
-                            width="282"
-                            style="
-                              max-width: 671px;
-                              border: 0;
-                              height: auto;
-                              outline: none;
-                              text-decoration: none;
-                              -ms-interpolation-mode: bicubic;
-                              vertical-align: bottom;
-                            "
-                            class="mcnImage"
-                          />
+                          ${leftBlockLink}
+                          ${leftBlockImage}
                         </a>
                       </td>
                     </tr>

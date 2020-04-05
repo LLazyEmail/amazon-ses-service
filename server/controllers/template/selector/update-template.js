@@ -15,6 +15,8 @@ const updateTemplate = async ({ TemplateName, ses }) => {
         }
 
     try {
+        // console.log(params);
+        
         const result = ses.updateTemplate(params).promise();
         return result;
     } catch (err) {

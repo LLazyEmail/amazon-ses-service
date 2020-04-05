@@ -1,6 +1,6 @@
 const list = require('../../../middleware/list/list');
 const { getItems } = require('../../../middleware/items/items');
-const { sponsorsBlock } = require('../../../middleware/sponsors-block/sponsorsBlock');
+const sponsorsBlock  = require('../../../middleware/sponsors-block/sponsorsBlock');
 
 
 const sendTemplatedEmail = ({ Addresses, TemplateName, ses }) => {

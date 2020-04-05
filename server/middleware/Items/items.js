@@ -8,10 +8,10 @@ const getItems = () => {
     items.forEach((item) => {
         concatenetedItems += `
         <li>
-            <div>{item.title}</div>
-            <div>{item.link}</div>
-            <div>{item.excerpt}</div>
-            <div>{item.author}</div>
+            <div>${item.title}</div>
+            <div>${item.link}</div>
+            <div>${item.excerpt}</div>
+            <div>${item.author}</div>
         </li>
         `
     })

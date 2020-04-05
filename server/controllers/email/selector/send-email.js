@@ -1,4 +1,5 @@
-const testHtml = require('../../../../examples/2');
+const hackernoonTemplate = require('../../template/envelops/hackernoon-template');
+
 
 const sendEmail = ({ addresses, ses }) => {
     const params = {
@@ -9,7 +10,7 @@ const sendEmail = ({ addresses, ses }) => {
             Body: {
                 Html: {
                     Charset: 'UTF-8',
-                    Data: testHtml
+                    Data: hackernoonTemplate
                 },
                 Text: {
                     Charset: 'UTF-8',

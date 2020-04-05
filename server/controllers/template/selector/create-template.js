@@ -1,4 +1,5 @@
-const htmlTemplate = require('../../../../examples/2')
+const simpleTemplate = require('../envelops/simple-template');
+
 
 const createTemplate = async ({ TemplateName, ses }) => {
     try {
@@ -6,8 +7,8 @@ const createTemplate = async ({ TemplateName, ses }) => {
             Template: {
                 TemplateName: TemplateName || 'test-template',
                 SubjectPart: 'Greetings, {{name}}!',
-                HtmlPart: htmlTemplate,
-                TextPart: "Dear {{name}},\r\nYour favorite animal is {{favoriteanimal}}."
+                HtmlPart: simpleTemplate,
+                TextPart: "Dear {{name}}"
             }
         }
 

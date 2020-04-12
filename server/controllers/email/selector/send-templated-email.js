@@ -1,23 +1,27 @@
-const list = require('../../../middleware/List/list');
-const { getItems } = require('../../../middleware/Items/items');
+const list = require('../../../middleware/list/list');
+const { getItems } = require('../../../middleware/items/items');
+const sponsorsBlock  = require('../../../middleware/sponsors-block/sponsorsBlock');
 
-const sendTemplatedEmail = ({ addresses, TemplateName, ses }) => {
+
+const sendTemplatedEmail = ({ Addresses, TemplateName, ses }) => {
     try {
-        let templatedData = {
+        let templateData = {
             name: "Vadim",
-            animal: getItems(),
-            favoriteanimal: "Cat",
-            htmlList: list
+            listItems: getItems(),
+            sponsors: sponsorsBlock
         };
 
         let params = {
             Source: process.env.SOURCE,
-            Template: "MyTemplate1",
+            Template: TemplateName,
             Destination: {
-                ToAddresses: [...addresses]
+                ToAddresses: [...Addresses]
             },
-            TemplateData: JSON.stringify(templatedData)
+            TemplateData: JSON.stringify(templateData)
         }
+        // console.log(params);
+
+        // return sponsorsBlock;
 
         return ses.sendTemplatedEmail(params).promise();
 

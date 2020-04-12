@@ -6,11 +6,11 @@ const testController = async (req, res, next) => {
 
 const sendEmailController = async (req, res, next) => {
     try {
-        if (!req.body.addresses) {
+        if (!req.body.Addresses) {
             return next("Error addressess undefined")
         }
 
-        await sendEmail({ ...req.body, ses: req.ses })
+        const result = await sendEmail({ ...req.body, ses: req.ses })
         res.send(`Sended email successfully. Date: ${new Date()}`)
 
     } catch (err) {
@@ -21,7 +21,7 @@ const sendEmailController = async (req, res, next) => {
 const sendTemplatedEmailController = async (req, res, next) => {
     try {
 
-        if (!req.body.addresses) {
+        if (!req.body.Addresses) {
             return next("Error addresses not specified")
         }
 

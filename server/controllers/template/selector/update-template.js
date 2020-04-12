@@ -1,16 +1,22 @@
-const htmlTemplate = require('../../../../examples/1');
+const zappierTemplate = require('../envelops/zappier-template');
+// var fs = require('fs');
+// const path = require('path');
+
+// let zappierTemplate = fs.readFileSync(path.resolve(__dirname, '../envelops/zappier-template.html'), 'utf8');
 
 const updateTemplate = async ({ TemplateName, ses }) => {
     let params = {
             Template: {
                 TemplateName: TemplateName || "test-template",
                 SubjectPart: 'Greetings, {{name}}!',
-                HtmlPart: htmlTemplate,
-                TextPart: "Dear {{name}},\r\nYour favorite animal is {{favoriteanimal}}."
+                HtmlPart: zappierTemplate,
+                TextPart: "Dear {{name}}."
             }
         }
 
     try {
+        // console.log(params);
+        
         const result = ses.updateTemplate(params).promise();
         return result;
     } catch (err) {

@@ -1,18 +1,16 @@
-const AWS = require('aws-sdk');
+const hackernoonTemplate = require('../../template/envelops/hackernoon-template');
 
-const testHtml = require('../../../../examples/2');
-const { SESConfig } = require('../../../../config');
 
-const sendEmail = ({ ToAddresses }) => {
+const sendEmail = ({ addresses, ses }) => {
     const params = {
         Destination: {
-            ToAddresses
+            ToAddresses: [...addresses]
         },
         Message: {
             Body: {
                 Html: {
                     Charset: 'UTF-8',
-                    Data: testHtml
+                    Data: hackernoonTemplate
                 },
                 Text: {
                     Charset: 'UTF-8',
@@ -30,7 +28,7 @@ const sendEmail = ({ ToAddresses }) => {
 
     try {
 
-        return new AWS.SES(SESConfig).sendEmail(params).promise();
+        return ses.sendEmail(params).promise();
 
     } catch (err) {
         console.log('err', err);

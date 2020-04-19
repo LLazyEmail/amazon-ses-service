@@ -1,19 +1,22 @@
-const AWS = require('aws-sdk');
-const htmlTemplate = require('../../../../examples/2')
-const { SESConfig } = require('../../../../config');
+// const zappierTemplateHTML = require('../envelops/zappier-template');
+const zappierTemplate = require('../envelops/zappier-template');
+// var fs = require('fs');
+// const path = require('path');
 
-const createTemplate = async ({ TemplateName }) => {
+// let zappierTemplate = fs.readFileSync(path.resolve(__dirname, '../envelops/zappier-template.html'), 'utf8')
+
+const createTemplate = async ({ TemplateName, ses }) => {
     try {
         let params = {
             Template: {
                 TemplateName: TemplateName || 'test-template',
                 SubjectPart: 'Greetings, {{name}}!',
-                HtmlPart: htmlTemplate,
-                TextPart: "Dear {{name}},\r\nYour favorite animal is {{favoriteanimal}}."
+                HtmlPart: zappierTemplate,
+                TextPart: "Dear {{name}}"
             }
         }
-
-        return await new AWS.SES(SESConfig).createTemplate(params).promise();
+        // return params
+        return await ses.createTemplate(params).promise();
 
     } catch (err) {
         console.log("error", err);

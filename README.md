@@ -160,3 +160,16 @@ localhost:3000/email/send?addresses=["example@g.com"]
 https://docs.google.com/spreadsheets/d/1ZV3nr6DLwHShrPIHtPll-UjZ-DCadcjsYy-UpDEXq5E/edit#gid=0
 
 https://docs.sendwithses.com/how/getting-started
+
+
+freeelz.
+https://www.fiverr.com/mining016/install-mautic-with-email-configuration
+https://www.fiverr.com/ipekyolu/configure-your-amazon-ses-service
+https://www.fiverr.com/milosrusov/install-mautic-on-digital-ocean-and-configure-amazon-ses
+https://www.fiverr.com/winwithweb_/create-and-automate-your-subscriber-emails-with-amazon-ses
+https://www.fiverr.com/ahmad2474/activate-your-aws-ses-service
+https://www.fiverr.com/slerya/setup-amazon-aws-ses-email-server
+
+https://www.mautic.org/marketplace
+
+

@@ -155,3 +155,6 @@ localhost:3000/email/send-templated?addresses=["example@g.com"]
 ```
 localhost:3000/email/send?addresses=["example@g.com"]
 ```
+
+
+https://docs.google.com/spreadsheets/d/1ZV3nr6DLwHShrPIHtPll-UjZ-DCadcjsYy-UpDEXq5E/edit#gid=0

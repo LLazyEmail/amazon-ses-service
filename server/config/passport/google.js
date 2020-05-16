@@ -21,9 +21,9 @@ module.exports = (passport, secret) => {
           return db.user.create({
             googleId: profile.id,
             token: token,
-            email: profile._json.emails[0].value,
+            email: profile._json.email,
             name: profile.displayName,
-            picture: profile._json.image.url
+            picture: profile._json.picture
           }, { transaction: t })
             .then(newUser => {
               newUserCreated = newUser;

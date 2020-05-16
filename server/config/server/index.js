@@ -27,7 +27,7 @@ module.exports = () => {
 
   // Configure session handling with redis, through the client connection.
   const { sessionMiddleware } = configureSession(client);
-
+  
   // Configure io
   const io = configureIo(sessionMiddleware, server);
 
@@ -38,12 +38,12 @@ module.exports = () => {
   app.use(passport.session()); // Use passport middleware for auth
   app.use(helmet()); // Implements various security tweaks to http response headers
 
-  app.use(
-    cookieSession({
-      maxAge: 30 * 24 * 60 * 60 * 1000,
-      keys: [process.env.COOKIE_SESSION]
-    })
-  );
+  // app.use(
+  //   cookieSession({
+  //     maxAge: 30 * 24 * 60 * 60 * 1000,
+  //     keys: [process.env.COOKIE_SESSION]
+  //   })
+  // );
 
   app.use('/public', express.static(path.join(__dirname, '../../../public'))); // Serve /public static files when unauth
   app.use('/dist', express.static(path.join(__dirname, '../../../dist'))); // Serve /dist static diles when auth

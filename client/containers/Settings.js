@@ -11,7 +11,7 @@ import 'react-widgets/dist/css/react-widgets.css';
 // Save the form details as if they were a login. There's no simply solution around this. Should we need this functionality, the best approach
 // Is probably to store the input and displayed state separately
 
-const regions = ['us-west-2', 'us-east-1', 'eu-west-1']; // AWS SES regions
+const regions = ['us-west-2', 'us-east-1', 'eu-west-1', 'eu-central-1']; // AWS SES regions
 
 function mapStateToProps(state) {
   return {

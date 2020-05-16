@@ -42,7 +42,7 @@ module.exports = function(req, res, redis) {
   }
 
   if (selectProvidedFields.regions) {
-    const regions = ['us-west-2', 'us-east-1', 'eu-west-1']; // AWS SES regions
+    const regions = ['us-west-2', 'us-east-1', 'eu-west-1', 'eu-central-1']; // AWS SES regions
     if (~regions.indexOf(selectProvidedFields.regions)) {
       res.status(400).send();
       return;

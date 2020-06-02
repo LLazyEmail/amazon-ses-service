@@ -11,13 +11,24 @@ module.exports = () => {
   });
 
   passport.deserializeUser(function(id, done) {
-    db.user.findById(id).then(user => {
+    db.user.findByPk(id).then(user => { 
       done(null, user);
       return null;
     }).catch(err => {
       if (err) { throw err; }
       }
     );
+
+
+    /* console.log();
+    
+    db.user.findById(id).then(user => {
+      done(null, user);
+      return null;
+    }).catch(err => {
+      if (err) { throw err; }
+      }
+    ); */
   });
   ///////////////////////////////
   /* AUTHENTICATION STRATEGIES */

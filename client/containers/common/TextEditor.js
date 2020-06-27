@@ -34,7 +34,8 @@ export default class TextEditor extends Component {
       value,
       onChange: this.onChange
     };
-
+    console.log("textEditorProps", textEditorProps);
+    
     // Render either a plaintext or html editor
     return (
       isPlaintext

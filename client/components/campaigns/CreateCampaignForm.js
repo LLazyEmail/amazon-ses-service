@@ -23,7 +23,8 @@ const CreateCampaignForm = props => {
     textEditorType,
     passResetToState
   } = props;
-
+  console.log("Props", props);
+  
   const lists = props.lists.map(x => x.name);
   const templates = props.templates.map(x => x.name);
   const nameArray = [
@@ -52,18 +53,21 @@ const CreateCampaignForm = props => {
 
   const applyForm = (applyTemplateValue) => {
     const foundTemplate = props.templates.find(x => x.name === applyTemplateValue);
+    console.log("found template", foundTemplate);
+    
     applyTemplate(foundTemplate);
   };
 
   const resetForm = () => {
     reset();
   };
+  console.log("emailBody", { textEditorType });
 
   return (
     <div>
       <h3>Apply template</h3>
       <Combobox id="templates" data={templates} suggest={true} onSelect={value => applyForm(value)} filter="contains" />
-      <br/>
+      <br />
 
       <form onSubmit={resetFormAndSubmit}>
         <h3>Select a List</h3>
@@ -71,7 +75,7 @@ const CreateCampaignForm = props => {
           <Field name="listName" component={renderCombobox} data={lists} />
         </div>
 
-        <hr/>
+        <hr />
 
         <h3>Campaign details</h3>
         {/* TODO: This needs to be validated via regex. Doesn't need to be a slug but must resolve to a unique slug so there's no possibility of conflict. */}
@@ -79,20 +83,20 @@ const CreateCampaignForm = props => {
         <Field name="fromName" component={renderField} label="From Name" type="text" />
         <Field name="fromEmail" component={renderField} label="From Email" type="email" />
 
-        <hr/>
+        <hr />
 
         <h3>Analytics</h3>
         <div><label><Field disabled={textEditorType == 'Plaintext'} name="trackingPixelEnabled" component="input" type="checkbox" /> Insert tracking pixel. Available for HTML emails only.</label></div>
         <div><label><Field disabled={textEditorType == 'Plaintext'} name="trackLinksEnabled" component="input" type="checkbox" /> Track link clickthroughs, syntax: {`{linklabel/http://mylinktotrack.com}`}. Available for HTML emails only. </label></div>
         <div><label><Field name="unsubscribeLinkEnabled" component="input" type="checkbox" /> Add unsubscribe link</label></div>
-        <hr/>
+        <hr />
 
         <h3>Create email</h3>
         <Field name="type" component={renderEditorTypeRadio} label="Type of email" />
         <Field name="emailSubject" component={renderField} label="Subject" type="text" />
         {/* We only want to render the textEditor that we are using, and we maintain state for each */}
         <Field name={`emailBody${textEditorType}`} emailBody={`emailBody${textEditorType}`} component={renderTextEditor} label="Write Email" textEditorType={textEditorType} />
-        <br/>
+        <br />
         <div className="box-footer">
           <div className="btn-group">
             <button className="btn btn-success btn-lg btn-hug" type="submit" disabled={invalid}>Next Step</button>

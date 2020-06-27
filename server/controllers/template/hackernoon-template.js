@@ -436,7 +436,7 @@ module.exports =`<!doctype html>
 
                         <td valign="top" class="mcnTextContent" style="padding: 0px 18px 9px;font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, Verdana, sans-serif;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;word-break: break-word;color: #202020;font-size: 16px;line-height: 150%;text-align: left;">
 
-                            <div style="text-align: center;">{{animal}} Hi {{name}} - this variable inserted from code :) {{htmlList}} -- today's top tech stories | curated by&nbsp;<a href="http://hackernoon.com" target="_blank" style="mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #222222;font-weight: bold;text-decoration: underline;">hackernoon.com</a>&nbsp;</div>
+                            <div style="text-align: center;">today's top tech stories | curated by&nbsp;<a href="http://hackernoon.com" target="_blank" style="mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #222222;font-weight: bold;text-decoration: underline;">hackernoon.com</a>&nbsp;</div>
 
                         </td>
                     </tr>
@@ -1136,5 +1136,4 @@ module.exports =`<!doctype html>
             </table>
         </center>
     </body>
-</html>
-`
+</html>`;

@@ -35,9 +35,11 @@ export default class TextEditorRich extends Component {
     value: PropTypes.string,
     onChange: PropTypes.func
   }
-
+  
+  
   render() {
     const { value, onChange } = this.props;
+
     return (
       <ReactQuill
         readOnly={false}

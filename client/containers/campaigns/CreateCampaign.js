@@ -93,9 +93,13 @@ export class CreateCampaignComponent extends Component {
         [`emailBody${template.type}`]: template.emailBody,
       });
 
+      console.log("correctTemplate", correctTemplate);
+      
       delete correctTemplate.emailBody;
 
       const applyTemplateOnTopOfCurrentValues = Object.assign({}, this.props.form.values, correctTemplate);
+      console.log("applyTemplateOnTopOfCurrentValues", applyTemplateOnTopOfCurrentValues);
+      
       this.props.initialize('createCampaign', applyTemplateOnTopOfCurrentValues);
     } else {
       this.props.notify({ message: 'You have not selected a valid template' });

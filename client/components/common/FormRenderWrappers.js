@@ -90,7 +90,15 @@ export const renderEditorTypeRadio = ({ input, label, type, meta: { touched, err
   </div>
 );
 
-export const renderTextEditor = ({ input, label, type, meta: { touched, error, warning }, textEditorValue, textEditorType, emailBody }) => (
+export const renderTextEditor = ({ input, label, type, meta: { touched, error, warning }, textEditorValue, textEditorType, emailBody }) => {
+  console.log("renderTextEditor");
+  console.log("Email body",emailBody);
+  
+  console.log("Text editor value", textEditorValue);
+  console.log('TextEditorType', textEditorType);
+  console.log('input', input);
+  
+  return (
   <div>
     <label>{label}</label>
     <div>
@@ -98,7 +106,9 @@ export const renderTextEditor = ({ input, label, type, meta: { touched, error, w
       {touched && ((error && <span className="text-red"><i className="fa fa-exclamation" /> {error}</span>) || (warning && <span>{warning}</span>))}
     </div>
   </div>
-);
+
+)
+};
 
 function getInputClassFromType(type) {
   let properClass = ''

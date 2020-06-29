@@ -13,7 +13,9 @@ const CampaignAnalytics = require('../../../../../models').campaignanalytics;
 
 module.exports = function(amazonEmail, campaignInfo, ses) {
   const { email, task } = amazonEmail;
-  const promisifiedSes = Promise.promisify(ses.sendEmail, { context: ses });
+  // change sending simple email to templated
+  // const promisifiedSes = Promise.promisify(ses.sendEmail, { context: ses });
+  const promisifiedSes = Promise.promisify(ses.sendTemplatedEmail, { context: ses });
 
   /**
    * @private

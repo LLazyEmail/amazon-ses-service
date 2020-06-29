@@ -40,7 +40,7 @@
   "dependencies": {
     "admin-lte": "2.3.6",
     "async": "2.4.1",
-    "aws-sdk": "2.69.0",
+    "aws-sdk": "^2.706.0",
     "bcrypt": "1.0.3",
     "bluebird": "3.5.0",
     "body-parser": "1.17.2",

@@ -7,7 +7,7 @@ const wrapLink = require('../lib/analytics').wrapLink;
 const insertUnsubscribeLink = require('../lib/analytics').insertUnsubscribeLink;
 const insertTrackingPixel = require('../lib/analytics').insertTrackingPixel;
 const mailMerge = require('../lib/mail-merge');
-const AmazonEmail = require('../lib/amazon');
+const AmazonEmail = require('../lib/hackernoon-amazon');
 
 /**
  * @description Get a formatted amazonEmail

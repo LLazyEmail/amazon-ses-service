@@ -7,7 +7,8 @@
 
 
 module.exports = (task, campaignInfo) => {
-
+  console.log("call amazon.js");
+  
   // Ref https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/SES.html#sendEmail-property
   const email = {
     Source: `"${campaignInfo.fromName}" <${campaignInfo.fromEmail}>`, // From email

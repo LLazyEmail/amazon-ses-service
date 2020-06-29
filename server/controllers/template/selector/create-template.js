@@ -1,5 +1,7 @@
 // const zappierTemplateHTML = require('../envelops/zappier-template');
 const zappierTemplate = require('../envelops/zappier-template');
+const hackernoonTemplate = require('../../../hackernoon-template');
+
 // var fs = require('fs');
 // const path = require('path');
 
@@ -11,7 +13,7 @@ const createTemplate = async ({ TemplateName, ses }) => {
             Template: {
                 TemplateName: TemplateName || 'test-template',
                 SubjectPart: 'Greetings, {{name}}!',
-                HtmlPart: zappierTemplate,
+                HtmlPart: hackernoonTemplate,
                 TextPart: "Dear {{name}}"
             }
         }

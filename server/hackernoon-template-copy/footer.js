@@ -1,4 +1,5 @@
-module.exports = `<table
+module.exports = `
+<table
 border="0"
 cellpadding="0"
 cellspacing="0"

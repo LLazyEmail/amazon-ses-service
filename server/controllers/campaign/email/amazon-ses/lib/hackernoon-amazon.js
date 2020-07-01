@@ -47,7 +47,7 @@ module.exports = (task, campaignInfo) => {
   } else {
     // Object.assign(email.Message.Body, { Html: { Data: campaignInfo.emailBody } });
     Object.assign(email, { 
-      Template: 'MyTemplate1',
+      Template: 'HN6',
       TemplateData: JSON.stringify(templateData) 
     });
   }

@@ -201,7 +201,7 @@ style="
   </tr>
 </tbody>
 </table>
-                 {{sponsor}}
+                 ${sponsor}
                   <table
                     border="0"
                     cellpadding="0"

@@ -23,6 +23,9 @@ export default {
     publicPath: '/dist/',
     filename: '[name].[chunkhash].js'
   },
+  optimization: {
+    minimize: true
+  },
   plugins: [
     // Hash the files using MD5 so that their names change when the content changes.
     new WebpackMd5Hash(),
@@ -59,22 +62,22 @@ export default {
       $: 'jquery',
       jquery: 'jquery'
     }),
-
     // Minify JS
-    new webpack.optimize.UglifyJsPlugin()
+    // new webpack.optimize.UglifyJsPlugin()
+    // new webpack.optimize.UglifyJsPlugin()
   ],
   module: {
-    loaders: [
-      {test: /\.jsx?$/, exclude: /node_modules/, loaders: ['babel-loader']},
-      {test: /\.eot(\?v=\d+.\d+.\d+)?$/, loader: 'file-loader'},
-      {test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf)$/, loader: 'url-loader', options: { name: '[hash].[ext]', limit: 10000 }},
-      {test: /\.ico$/, loader: 'file-loader', options: { name: '[hash].[ext]' }},
-      {test: /(\.css|\.scss)$/, loaders: ['style-loader', 'css-loader',  'sass-loader']},
-      {
-        test: /\.json$/,
-        include: /node_modules/,
-        loader: 'json-loader'
-      }
-    ]
+      rules: [
+        {test: /\.jsx?$/, exclude: /node_modules/, loaders: ['babel-loader']},
+        {test: /\.eot(\?v=\d+.\d+.\d+)?$/, loader: 'file-loader'},
+        {test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf)$/, loader: 'url-loader', options: { name: '[hash].[ext]', limit: 10000 }},
+        {test: /\.ico$/, loader: 'file-loader', options: { name: '[hash].[ext]' }},
+        {test: /(\.css|\.scss)$/, loaders: ['style-loader', 'css-loader',  'sass-loader']},
+        {
+          test: /\.json$/,
+          include: /node_modules/,
+          loader: 'json-loader'
+        }
+      ]
   }
 };

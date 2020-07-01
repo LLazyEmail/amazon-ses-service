@@ -131,7 +131,7 @@ style="
 `
 
 for(let i=0; i < 5; i++){
-  articles += `${i}# ${article}`;
+  articles += `Date: ${new Date()} ${i}# ${article}`;
 }
 
 

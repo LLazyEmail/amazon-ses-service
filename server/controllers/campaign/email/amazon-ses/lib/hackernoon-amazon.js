@@ -4,7 +4,8 @@
  * @param {object} campaignInfo - Information about this campaign
  * @return {object} Formatted email object
  */
-
+const articles = require('../../../../../hackernoon-template/articles');
+const sponsor = require('../../../../../hackernoon-template/sponsor');
 
 module.exports = (task, campaignInfo) => {
   console.log("call hackernoon-amazon.js");
@@ -23,11 +24,16 @@ module.exports = (task, campaignInfo) => {
   //   }
   // };
   let templateData = {
-    favoriteanimal: "Dog",
-    name: "Vadim",
-    htmlList: 'OKList',
-    animal: "dog"
+    name: "Vadim1",
+    articles,
+    sponsor
 };
+//   let templateData = {
+//     favoriteanimal: "Dog",
+//     name: "Vadim",
+//     htmlList: 'OKList',
+//     animal: "dog"
+// };
 
   const email = {
     Source: `"${campaignInfo.fromName}" <${campaignInfo.fromEmail}>`, // From email

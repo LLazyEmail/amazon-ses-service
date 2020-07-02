@@ -4,7 +4,7 @@ import webpack from 'webpack';
 // import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
-import WebpackMd5Hash from 'webpack-md5-hash';
+// import WebpackMd5Hash from 'webpack-md5-hash';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 const path = require('path');
 
@@ -24,14 +24,14 @@ export default {
   output: {
     path: `${__dirname}/dist`,
     publicPath: '/dist/',
-    filename: '[name].[chunkhash].js'
+    filename: '[name].js'
   },
   optimization: {
     minimize: true
   },
   plugins: [
     // Hash the files using MD5 so that their names change when the content changes.
-    new WebpackMd5Hash(),
+    // new WebpackMd5Hash(),
 
     // Tells React to build in prod mode. https://facebook.github.io/react/downloads.html
     new webpack.DefinePlugin(GLOBALS),
@@ -85,10 +85,6 @@ export default {
           // MiniCssExtractPlugin.loader,
           {
             loader: "css-loader",
-            options: { sourceMap: false }
-          },
-          {
-            loader: "postcss-loader",
             options: { sourceMap: false }
           },
           {

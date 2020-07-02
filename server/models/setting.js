@@ -24,7 +24,7 @@ module.exports = function(sequelize, DataTypes) {
         this.setDataValue('amazonSimpleEmailServiceSecretKeyEncrypted', crypted);
       },
       get: function () {
-        const decipher = crypto.createDecipher(algorithm,password);
+        const decipher = crypto.createDecipheriv(algorithm,password);
         let dec = decipher.update(this.getDataValue('amazonSimpleEmailServiceSecretKeyEncrypted'),'hex','utf8');
         dec += decipher.final('utf8');
         return dec;

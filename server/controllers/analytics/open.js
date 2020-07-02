@@ -4,7 +4,7 @@ const geoip = require('geoip-lite');
 const CampaignAnalyticsOpen = require('../../models').campaignanalyticsopen;
 const CampaignAnalytics = require('../../models').campaignanalytics;
 
-const trackingPixel = new Buffer('R0lGODlhAQABAPAAAAAAAAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw', 'base64');
+const trackingPixel = new Buffer.from('R0lGODlhAQABAPAAAAAAAAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw', 'base64');
 
 module.exports = function(req, res) {
   CampaignAnalyticsOpen.findOne({

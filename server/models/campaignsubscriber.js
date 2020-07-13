@@ -21,12 +21,12 @@ module.exports = function(sequelize, DataTypes) {
       {
         fields:['sent']
       },
-      {
-        fields:['listsubscriberId']
-      },
-      {
-        fields:['campaignId']
-      }
+      // {
+      //   fields:['listsubscriberId']
+      // },
+      // {
+      //   fields:['campaignId']
+      // }
     ]
   });
   return campaignsubscriber;

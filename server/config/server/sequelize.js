@@ -1,7 +1,11 @@
 const db = require('../../models');
 
-module.exports = () => {
+module.exports = async () => {
   const { sequelize } = db;
 
-  sequelize.sync({force:false,hooks:true})
+  try{
+   await sequelize.sync({force:false,hooks:true});
+  }catch(err){
+    console.error("Error", err);
+  }
 };

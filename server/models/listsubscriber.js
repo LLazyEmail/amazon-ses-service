@@ -2,10 +2,11 @@
 module.exports = function(sequelize, DataTypes) {
   var listsubscriber = sequelize.define('listsubscriber', {
     email: DataTypes.STRING,
+    listId: DataTypes.INTEGER,
     subscribed: { type: DataTypes.BOOLEAN, defaultValue: true },
     unsubscribeKey: { type: DataTypes.UUID, defaultValue: DataTypes.UUIDV4 },
     mostRecentStatus: { type: DataTypes.STRING, defaultValue: 'unconfirmed' }, // bounce:permanent, bounce:transient, complaint
-    additionalData: { type: DataTypes.JSONB, defaultValue: {} }
+    additionalData: { type: DataTypes.JSONB, defaultValue: {} },
   }, {
     classMethods: {
       associate: function(models) {

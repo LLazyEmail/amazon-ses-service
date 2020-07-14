@@ -55,8 +55,8 @@ module.exports = (req, res, io) => {
     } else {
       return false;
     }
-  }, err => {
-    return err;
+  }).catch((err) =>{
+    console.error(err);
   });
 
   const validateCsvDoesNotContainErrors = new Promise((resolve, reject) => {
@@ -109,18 +109,17 @@ module.exports = (req, res, io) => {
         sendSingleNotification(io, req, notification);
         resolve();
       });
+  }).catch((err) => {
+    console.error(err);
   });
 
   Promise.all([validateListBelongsToUser, validateCsvDoesNotContainErrors])
   .then(values => {
     let [listInstance] = values; // Get variables from the values array
     const randomId = shortid.generate();
-
     listInstance = listInstance[0];
-    console.log('listInstance',listInstance);
-    
-    const listIsNew = listInstance.$options.isNewRecord;
-    console.log("listIsNew", listIsNew);
+
+    const listIsNew = listInstance._options.isNewRecord;
     
     const listId = listInstance.dataValues.id;
 

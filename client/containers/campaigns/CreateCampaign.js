@@ -117,7 +117,9 @@ export class CreateCampaignComponent extends Component {
   render() {
     const { page, initialFormValues } = this.state;
     const { lists, templates, form, isGetting, isPosting } = this.props;
-
+    console.log("form1", form);
+    console.log("page", page);
+    
     const type = (this.props.form && this.props.form.values.type) ? this.props.form.values.type : this.state.initialFormValues.type;
 
     return (

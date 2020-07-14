@@ -63,16 +63,14 @@ module.exports = (req, res, io) => {
           slug: slug(req.body.campaignName)
         }
       }).then((instance) => {
-        // console.log("instance", instance);
-        
-        if (instance[0].$options.isNewRecord) {
+        if (instance[0]._options.isNewRecord) {
           const campaignId = instance[0].dataValues.id;
           let totalCampaignSubscribersProcessed = 0;
           db.campaignanalytics.create({campaignId}).then(() => {
             // Iterate through blocks of 10k ListSubscribers and bulk create CampaignSubscribers.
             // Each time we write (bulk insert) 10k ListSubscribers, fetch the next 10k by recursively calling
             // createCampaignSubscribers - ensures that we don't run out of ram by loading too many ListSubscribers
-            // at once.
+            // at once.      
             res.send({message: 'Campaign is being created - it will be ready to send soon.'}); // Should use notification/status rather than simple response
             function createCampaignSubscribers(offset = 0, limit = 10000) {
               db.listsubscriber.findAll({
@@ -91,15 +89,20 @@ module.exports = (req, res, io) => {
                   ['id', 'ASC']
                 ],
                 raw: true
-              }).then(listSubscribers => {
+              })
+              .then(listSubscribers => {
                 if (listSubscribers.length) { // If length is 0 then there are no more ListSubscribers, so we can cleanup
                   totalCampaignSubscribersProcessed += listSubscribers.length;
                   listSubscribers = listSubscribers.map(listSubscriber => {
                     listSubscriber.campaignId = campaignId;
                     return listSubscriber;
                   });
-                  db.campaignsubscriber.bulkCreate(listSubscribers).then(() => {
+                  db.campaignsubscriber.bulkCreate(listSubscribers)
+                  .then(() => {
                     createCampaignSubscribers(offset + limit);
+                  })
+                  .catch((err)=>{
+                    console.error(err);
                   });
                 } else {
                   db.campaign.update({
@@ -109,13 +112,19 @@ module.exports = (req, res, io) => {
                     where: {
                       id: campaignId
                     }
-                  }).then(() => {
+                  })
+                  .then(() => {
                     sendSuccessNotification();
                     return;
-                  }).catch(err => {
+                  })
+                  .catch(err => {
+                    console.error(err);
                     throw err;
                   });
                 }
+              })
+              .catch((err) =>{
+                console.error(err);
               });
             }
             createCampaignSubscribers(); // Start creating CampaignSubscribers
@@ -131,7 +140,7 @@ module.exports = (req, res, io) => {
     res.status(400).send(err);
   });
 
-  function sendSuccessNotification() {
+  function sendSuccessNotification() {  
     const notification = {
       message: `${req.body.campaignName} is ready to send`,
       icon: 'fa-list-alt',

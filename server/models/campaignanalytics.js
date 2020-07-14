@@ -1,4 +1,5 @@
 'use strict';
+
 module.exports = function(sequelize, DataTypes) {
   var campaignanalytics = sequelize.define('campaignanalytics', {
     complaintCount: { type: DataTypes.INTEGER, defaultValue: 0 },
@@ -20,5 +21,12 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
+
+  // campaignanalytics.associate = (models) => {
+  //   campaignanalytics.belongsTo(models.campaign);
+  //   campaignanalytics.hasMany(models.campaignanalyticslink);
+  //   campaignanalytics.hasMany(models.campaignanalyticsopen);
+  // }
+  // campaignanalytics.belongsTo(sequelize.models.campaign)
   return campaignanalytics;
 };

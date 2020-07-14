@@ -4,7 +4,6 @@ const CampaignAnalytics = require('../../models').campaignanalytics;
 module.exports = (req, res) => {
 
   const userId = req.user.id;
-
   // Find all campaigns belonging to a user & send it to them
   Campaign.findAll({
     where: {
@@ -12,6 +11,8 @@ module.exports = (req, res) => {
     },
     include: [
       {
+        all: true,
+        nested: true,
         model: CampaignAnalytics, // Campaign summary analytics
         required: true,
         attributes: [
@@ -49,10 +50,8 @@ module.exports = (req, res) => {
     } else {
       res.send();
     }
-  }).catch(() => {
-    res.send();
   }).catch(err => {
+    console.error(err);
     res.status(400).send(err);
   });
-
 };

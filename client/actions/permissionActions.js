@@ -24,7 +24,7 @@ import {
   API_GRANT_OFFERED_PERMISSIONS_ENDPOINT
 } from '../constants/endpoints';
 import axios from 'axios';
-import cookie from 'react-cookie';
+import { Cookies } from 'react-cookie';
 import { notify } from './notificationActions';
 
 // REST for granting permissions
@@ -315,7 +315,7 @@ export function deleteGrantOfferedPermissions(offerIds, grantOfferedPermisions) 
 export function becomeAnotherUser(thisAccount) {
   return dispatch => {
     // Save to cookie storing the active user's ACL id, this will be sent along with all http requests to the server
-    cookie.save('user', thisAccount.id, { path: '/' });
+    Cookies.set('user', thisAccount.id, { path: '/' });
     dispatch(activateAccount(thisAccount));
   };
 }
@@ -323,7 +323,7 @@ export function becomeAnotherUser(thisAccount) {
 export function becomeSelf() {
   return dispatch => {
     // Save to cookie storing the active user's ACL id, this will be sent along with all http requests to the server
-    cookie.remove('user', { path: '/' });
+    Cookies.remove('user', { path: '/' });
     dispatch(deactivateAccount());
   };
 }

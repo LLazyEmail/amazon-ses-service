@@ -1,12 +1,12 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { Table } from 'react-bootstrap';
-
+import PropTypes from 'prop-types';
 export default class SubscribersTable extends Component {
 
   static propTypes = {
     subscribers: PropTypes.array,
     fields: PropTypes.array,
-    deleteSubscriber: React.PropTypes.func
+    deleteSubscriber: PropTypes.func
   }
 
   constructor(props) {

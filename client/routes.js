@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react';
-import { Route, Router, IndexRoute } from 'react-router';
+import { Route, Router } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import App from './containers/App';
@@ -74,7 +74,7 @@ export default class RouterConfig extends Component {
     return (
       <Router history={history}>
         <Route path="/" component={App}>
-          <IndexRoute component={Dashboard} onEnter={this.onEnter} />
+          <Route exact component={Dashboard} onEnter={this.onEnter} />
 
           <Route path="campaigns" onEnter={this.onEnter} >
             <Route path="create" component={CreateCampaign}/>

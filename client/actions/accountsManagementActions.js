@@ -7,7 +7,7 @@ import {
   API_DELETE_USER_ENDPOINT,
 } from '../constants/endpoints';
 import axios from 'axios';
-import cookie from 'react-cookie';
+// import { Cookies } from 'react-cookie';
 import { notify } from './notificationActions';
 
 // REST for granting permissions

@@ -1,6 +1,7 @@
 /* eslint-disable */
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import { addSubscribers } from '../actions/listActions';
 
@@ -40,7 +41,7 @@ export class AddEmailComponent extends React.Component {
 }
 
 AddEmailComponent.propTypes = {
-  addSubscribers: React.PropTypes.func.isRequired
+  addSubscribers: PropTypes.func.isRequired
 };
 
 export default connect(null, mapDispatchToProps)(AddEmailComponent);

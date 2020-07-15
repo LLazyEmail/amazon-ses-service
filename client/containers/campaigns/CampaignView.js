@@ -58,6 +58,8 @@ export class CampaignViewComponent extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.sendTestEmail = this.sendTestEmail.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    console.log("render");
+    
   }
 
   state = {
@@ -140,6 +142,8 @@ export class CampaignViewComponent extends Component {
   }
 
   openSendModal() {
+    console.log("click on send");
+    
     this.setState({
       showSendModal: true
     });
@@ -254,6 +258,7 @@ export class CampaignViewComponent extends Component {
               </Modal>
 
               {/* Modal for sending email campaign */}
+              {<div>{this.state.showSendModal?'true':'false'}</div>}
               <Modal show={this.state.showSendModal} onHide={this.closeSendModal}>
                 <Modal.Header closeButton>
                   <Modal.Title>Are you ready to send this campaign to {thisCampaign.totalCampaignSubscribers ? thisCampaign.totalCampaignSubscribers.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") : 0} subscribers?</Modal.Title>

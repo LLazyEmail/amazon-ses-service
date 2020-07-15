@@ -1,7 +1,8 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { RouteTransition } from 'react-router-transition';
-import cookie from 'react-cookie';
+import { Cookies } from 'react-cookie';
+import PropTypes from 'prop-types';
 
 import Header from '../components/admin-lte/Header.js';
 import Sidebar from '../components/admin-lte/Sidebar.js';
@@ -49,12 +50,12 @@ export class AppComponent extends Component {
     becomeAnotherUser: PropTypes.func.isRequired,
     becomeSelf: PropTypes.func.isRequired,
     // router
-    route: React.PropTypes.object,
-    location: React.PropTypes.object
+    route: PropTypes.object,
+    location: PropTypes.object
   }
 
   static contextTypes = {
-    router: React.PropTypes.object
+    router: PropTypes.object
   }
 
   constructor() {
@@ -68,10 +69,10 @@ export class AppComponent extends Component {
     // Before component mount, if the 'user' cookie key exists but this.props.activeAccount.email === undefined then we need to delete this property
     // As it's no longer in sync with the app's state and will incorrectly inform the server to use permissions to another user's account
     if (!this.props.activeAccount.email) {
-      cookie.remove('user', { path: '/' });
+      Cookies.remove('user', { path: '/' });
     }
-    if (!cookie.load('user') && this.props.activeAccount.email) {
-      cookie.save('user', this.props.activeAccount.id, { path: '/' });
+    if (!Cookies.load('user') && this.props.activeAccount.email) {
+      Cookies.set('user', this.props.activeAccount.id, { path: '/' });
     }
   }
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactTooltip from 'react-tooltip';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 const WSNotification = props => { // eslint-disable-line no-unused-vars
   const { message, icon, iconColour, consumeNotification, index, url } = props;

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import PropTypes from 'prop-types';
 export default class ErrorsList extends Component {
   constructor(props) {
     super(props);
@@ -41,5 +41,5 @@ export default class ErrorsList extends Component {
 }
 
 ErrorsList.propTypes = {
-  errors: React.PropTypes.array
+  errors: PropTypes.array
 };

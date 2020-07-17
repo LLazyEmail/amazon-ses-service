@@ -51,12 +51,18 @@ module.exports = function(sequelize, DataTypes) {
     whiteLabelUrl: { type: DataTypes.STRING, defaultValue: '' },
     email: { type: DataTypes.STRING, defaultValue: '' }
   }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-        setting.belongsTo(models.user);
-      }
-    }
+    // classMethods: {
+    //   associate: function(models) {
+    //     // associations can be defined here
+    //     setting.belongsTo(models.user);
+    //   }
+    // }
   });
+
+  setting.associate = function(models) {
+    // associations can be defined here
+    setting.belongsTo(models.user);
+  };
+
   return setting;
 };

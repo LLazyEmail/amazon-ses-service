@@ -5,14 +5,14 @@ class SidebarTreeview extends Component {
 
   render() {
     return (
-      <li className="treeview">
-        <a href="#">
-          <i className={`fa ${this.props.icon}`}/><span>{this.props.name}</span>
-        </a>
-        <ul className="treeview-menu">
-          {this.props.children}
-        </ul>
-      </li>
+        <li className="nav-item has-treeview">
+          <a href="#" className="nav-link">
+            <i className={`fa ${this.props.icon} nav-icon`} /><p>{this.props.name}</p>
+          </a>
+          <ul className="nav nav-treeview">
+            {this.props.children}
+          </ul>
+        </li>
     );
   }
 }

@@ -9,11 +9,11 @@ module.exports = function(sequelize, DataTypes) {
     templates: { type: DataTypes.STRING, validate: { isIn: [['None', 'Read', 'Write']] } },
     lists: { type: DataTypes.STRING, validate: { isIn: [['None', 'Read', 'Write']] } }
   }, {
-    classMethods: {
-      associate: function() {
-        // associations can be defined here
-      }
-    },
+    // classMethods: {
+    //   associate: function() {
+    //     // associations can be defined here
+    //   }
+    // },
     indexes: [
       {
         fields:['userId']
@@ -23,5 +23,6 @@ module.exports = function(sequelize, DataTypes) {
       }
     ]
   });
+
   return acl;
 };

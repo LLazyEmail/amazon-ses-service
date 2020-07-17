@@ -48,7 +48,8 @@ module.exports = async function (generator, redis, campaignAndListInfo, amazonAc
     }
   });
   redis.subscriber.subscribe('stop-campaign-sending');
-
+  console.log("call1 after stop campaign sending");
+  
   /**
    * @description Start the campaign send.
    *  We will start by getting all ids of list subscribers that we'll email. We'll store this in memory.

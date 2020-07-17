@@ -4,12 +4,18 @@ module.exports = function(sequelize, DataTypes) {
     sesMessageId: DataTypes.STRING,
     email: DataTypes.STRING
   }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-        analysisemail.belongsTo(models.analysis);
-      }
-    }
+    // classMethods: {
+    //   associate: function(models) {
+    //     // associations can be defined here
+    //     analysisemail.belongsTo(models.analysis);
+    //   }
+    // }
   });
+
+  analysisemail.associate = function(models) {
+    // associations can be defined here
+    analysisemail.belongsTo(models.analysis);
+  };
+  
   return analysisemail;
 };

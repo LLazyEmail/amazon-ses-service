@@ -6,21 +6,18 @@ import '../../styles/header.scss';
 const Header = props => { // eslint-disable-line no-unused-vars
   const { user, ws_notification, consumeNotification } = props;
   return (
-    <header className="main-header">
-      <div className="logo">
-        <span className="logo-mini">
-          <strong>MfG</strong>
-        </span>
-        <span className="logo-lg">
-          <strong>Mail for Good <i className="fa fa-free-code-camp" /></strong>
-        </span>
-      </div>
-      <nav className="navbar navbar-static-top">
-        <a className="sidebar-toggle" href="#" data-toggle="offcanvas">
+    <nav className="main-header navbar navbar-expand navbar-white navbar-light">
+       <ul className="navbar-nav">
+         <li className="nav-item">
+           <a className="nav-link" data-widget="pushmenu" href="#">
+             <i className="fas fa-bars"/>
+             </a>
+        </li>
+        </ul>
+        {/* <a className="sidebar-toggle" href="#" data-toggle="offcanvas">
           <span className="sr-only">Toggle navigation</span>
-        </a>
-        <div className="navbar-custom-menu">
-          <ul className="nav navbar-nav">
+        </a> */}
+         <ul className="navbar-nav ml-auto">
 
             <li className="dropdown notifications-menu">
               <a href="#" className="dropdown-toggle" data-toggle="dropdown">
@@ -78,9 +75,7 @@ const Header = props => { // eslint-disable-line no-unused-vars
             </li>
 
           </ul>
-        </div>
       </nav>
-    </header>
   );
 };
 

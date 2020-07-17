@@ -54,10 +54,6 @@ export class AppComponent extends Component {
     location: PropTypes.object
   }
 
-  static contextTypes = {
-    router: PropTypes.object
-  }
-
   constructor(props) {
     super(props);
     this.changeAccount = this.changeAccount.bind(this);
@@ -94,17 +90,18 @@ export class AppComponent extends Component {
   changeAccount() {
     const thisAccount = this.props.activePermissionsEmails.find(x => x.email === this.props.accountForm.values.email);
     // @thisAccount { email, id }
-    this.props.becomeAnotherUser(thisAccount);
+    this.props.becomeAnotherUser(thisAccount, this.props.cookies);
     this.pushToDashboardOrRefresh();
   }
 
   changeAccountToSelf() {
-    this.props.becomeSelf();
+    this.props.becomeSelf(this.props.cookies);
     this.pushToDashboardOrRefresh();
   }
 
   render() {
     console.log("app", this.props.history);
+    console.log("activeAccount", this.props.activeAccount);
     
     const { location, isGettingActivePermissions, activePermissionsEmails, activeAccount, ws_notification, consumeNotification, user } = this.props;
     return (

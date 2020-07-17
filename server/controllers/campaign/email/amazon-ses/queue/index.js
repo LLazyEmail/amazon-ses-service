@@ -11,8 +11,11 @@ const sendEmail = require('./sendEmail');
 module.exports = (rateLimit, ses) => {
   // https://github.com/SGrondin/bottleneck#constructor
   const TIME_SEND = (1 / rateLimit) * 1000;
-  const limiter = new Bottleneck(rateLimit, TIME_SEND);
-
+  // const limiter = new Bottleneck(rateLimit, TIME_SEND);
+  const limiter = new Bottleneck({
+    maxConcurrent: rateLimit, 
+    minTime: TIME_SEND
+  });
   /**
    * @description Add an email to the queue.
    * @param {object} amazonEmail - configured email to send

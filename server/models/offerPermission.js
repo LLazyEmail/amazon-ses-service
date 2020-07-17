@@ -8,12 +8,18 @@ module.exports = function(sequelize, DataTypes) {
     templates: { type: DataTypes.STRING, validate: { isIn: [['None', 'Read', 'Write']] } },
     lists: { type: DataTypes.STRING, validate: { isIn: [['None', 'Read', 'Write']] } }
   }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-        offerPermission.belongsTo(models.user);
-      }
-    }
+    // classMethods: {
+    //   associate: function(models) {
+    //     // associations can be defined here
+    //     offerPermission.belongsTo(models.user);
+    //   }
+    // }
   });
+
+  offerPermission.associate = function(models) {
+    // associations can be defined here
+    offerPermission.belongsTo(models.user);
+  };
+
   return offerPermission;
 };

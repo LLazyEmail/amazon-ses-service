@@ -2,21 +2,21 @@
 module.exports = function(sequelize, DataTypes) {
   var listsubscriber = sequelize.define('listsubscriber', {
     email: DataTypes.STRING,
-    listId: DataTypes.INTEGER,
+    // listId: DataTypes.INTEGER,
     subscribed: { type: DataTypes.BOOLEAN, defaultValue: true },
     unsubscribeKey: { type: DataTypes.UUID, defaultValue: DataTypes.UUIDV4 },
     mostRecentStatus: { type: DataTypes.STRING, defaultValue: 'unconfirmed' }, // bounce:permanent, bounce:transient, complaint
     additionalData: { type: DataTypes.JSONB, defaultValue: {} },
   }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-        listsubscriber.belongsTo(models.list);
-        listsubscriber.hasMany(models.campaignanalyticslink);
-        listsubscriber.hasMany(models.campaignanalyticsopen);
-        listsubscriber.hasMany(models.campaignsubscriber);
-      }
-    },
+    // classMethods: {
+    //   associate: function(models) {
+    //     // associations can be defined here
+    //     listsubscriber.belongsTo(models.list);
+    //     listsubscriber.hasMany(models.campaignanalyticslink);
+    //     listsubscriber.hasMany(models.campaignanalyticsopen);
+    //     listsubscriber.hasMany(models.campaignsubscriber);
+    //   }
+    // },
     indexes: [
       {
         fields: ['email']
@@ -26,5 +26,14 @@ module.exports = function(sequelize, DataTypes) {
       }
     ]
   });
+
+  listsubscriber.associate = function(models) {
+    // associations can be defined here
+    listsubscriber.belongsTo(models.list);
+    listsubscriber.hasMany(models.campaignanalyticslink);
+    listsubscriber.hasMany(models.campaignanalyticsopen);
+    listsubscriber.hasMany(models.campaignsubscriber);
+  };
+
   return listsubscriber;
 };

@@ -12,11 +12,11 @@ module.exports = function(sequelize, DataTypes) {
     isAdmin: DataTypes.BOOLEAN,
     sentEmailsCount: { type: DataTypes.INTEGER, defaultValue: 0 }
   }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      }
-    }
+    // classMethods: {
+    //   associate: function(models) {
+    //     // associations can be defined here
+    //   }
+    // }
   });
 
   User.addHook('afterSync',() => {
@@ -33,6 +33,7 @@ module.exports = function(sequelize, DataTypes) {
     })
     return null
   })
+
 
   //returns Promise(isValid:boolean)
   User.checkPassword = (plainTextPassword, hash) => {

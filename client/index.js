@@ -14,7 +14,8 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 
-import './utils/adminLte/app.js'; // JS needs to be modified for compatabiltiy with react router
+import 'admin-lte/dist/js/adminlte.js';
+// import './utils/adminLte/app.js'; // JS needs to be modified for compatabiltiy with react router
 // import '../node_modules/admin-lte/dist/css/adminlte.min.css';
 // import 'admin-lte/dist/css/AdminLTE.min.css';
 import 'admin-lte/dist/css/adminlte.min.css';

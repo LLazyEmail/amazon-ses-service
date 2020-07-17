@@ -30,6 +30,8 @@ module.exports = (campaignInfo) => {
       return plainArrayOfIdNumbers;
     })
     .catch(err => {
+      console.error(err);
+      
       // This should never happen - so we can throw an error here if it does.
       throw new Error('Error getting list subscribers ids in getArrayOfEmailIds - ', err);
     });

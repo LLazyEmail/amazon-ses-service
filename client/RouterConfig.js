@@ -151,7 +151,7 @@ class RouterConfig extends Component {
             <Route path="/analytics" component={AnalyticsRoutes} />
             <Route path="/accountsManagement" component={AccountsManagementRoutes} />
             <Route path="/permissions" component={PermissionsRoutes} />
-            <Route path="settings" component={Settings} />
+            <Route path="/settings" component={Settings} />
             <Route path="*" component={NotFound} />
           </Switch>
         </App>

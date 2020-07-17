@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var campaignsubscriber = sequelize.define('campaignsubscriber', {
+  let campaignsubscriber = sequelize.define('campaignsubscriber', {
     email: DataTypes.STRING,
     messageId: DataTypes.STRING,
     status: DataTypes.STRING,
@@ -8,12 +8,12 @@ module.exports = function(sequelize, DataTypes) {
     bounceSubType: DataTypes.STRING,
     sent: { type: DataTypes.BOOLEAN, defaultValue: false }
   }, {
-    classMethods: {
-      associate: function(models) {
-        campaignsubscriber.belongsTo(models.campaign, { foreignKeyConstraint: true });
-        campaignsubscriber.belongsTo(models.listsubscriber, { foreignKeyConstraint: true });
-      }
-    },
+    // classMethods: {
+    //   associate: function(models) {
+    //     campaignsubscriber.belongsTo(models.campaign, { foreignKeyConstraint: true });
+    //     campaignsubscriber.belongsTo(models.listsubscriber, { foreignKeyConstraint: true });
+    //   }
+    // },
     indexes: [
       {
         fields:['email']
@@ -21,13 +21,18 @@ module.exports = function(sequelize, DataTypes) {
       {
         fields:['sent']
       },
-      // {
-      //   fields:['listsubscriberId']
-      // },
-      // {
-      //   fields:['campaignId']
-      // }
+      {
+        fields:['listsubscriberId']
+      },
+      {
+        fields:['campaignId']
+      }
     ]
   });
+
+  campaignsubscriber.associate = function(models) {
+    campaignsubscriber.belongsTo(models.campaign, { foreignKeyConstraint: true });
+    campaignsubscriber.belongsTo(models.listsubscriber, { foreignKeyConstraint: true });
+  };
   return campaignsubscriber;
 };

@@ -6,18 +6,15 @@ class DisabledLink extends Component {
 
   render() {
     return (
-      <li>
-        <a href="#">
-          <i className={`fa ${this.props.icon || 'fa-circle-o'}`} style={{ color: '#666666' }} /><span style={{ color: '#666666' }}>{this.props.children}</span>
+      <li className="nav-item">
+        <a className="nav-link" href="#">
+          <i className={`nav-icon fas ${this.props.icon || 'fa-circle-o'}`} style={{ color: '#666666' }} />
+          <p style={{ color: '#666666' }}>{this.props.children} Not active account</p>
         </a>
       </li>
     );
   }
 }
-
-DisabledLink.contextTypes = {
-  router: PropTypes.object.isRequired
-};
 
 DisabledLink.propTypes = {
   icon: PropTypes.string,

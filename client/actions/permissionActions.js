@@ -312,18 +312,18 @@ export function deleteGrantOfferedPermissions(offerIds, grantOfferedPermisions) 
 
 // App state - change user account
 
-export function becomeAnotherUser(thisAccount) {
+export function becomeAnotherUser(thisAccount, cookies) {
   return dispatch => {
     // Save to cookie storing the active user's ACL id, this will be sent along with all http requests to the server
-    Cookies.set('user', thisAccount.id, { path: '/' });
+    cookies.set('user', thisAccount.id, { path: '/' });
     dispatch(activateAccount(thisAccount));
   };
 }
 
-export function becomeSelf() {
+export function becomeSelf(cookies) {
   return dispatch => {
     // Save to cookie storing the active user's ACL id, this will be sent along with all http requests to the server
-    Cookies.remove('user', { path: '/' });
+    cookies.remove('user', { path: '/' });
     dispatch(deactivateAccount());
   };
 }

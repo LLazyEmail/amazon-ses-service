@@ -11,8 +11,8 @@ module.exports = (req, res) => {
     },
     include: [
       {
-        all: true,
-        nested: true,
+        // all: true,
+        // nested: true,
         model: CampaignAnalytics, // Campaign summary analytics
         required: true,
         attributes: [

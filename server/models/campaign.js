@@ -2,8 +2,8 @@
 module.exports = function(sequelize, DataTypes) {
   var campaign = sequelize.define('campaign', {
     name: DataTypes.STRING,
-    userId: DataTypes.INTEGER,
-    listId: DataTypes.INTEGER,
+    // userId: DataTypes.INTEGER,
+    // listId: DataTypes.INTEGER,
     fromName: DataTypes.STRING,
     fromEmail: DataTypes.STRING,
     emailSubject: DataTypes.STRING,
@@ -16,15 +16,24 @@ module.exports = function(sequelize, DataTypes) {
     status: { type: DataTypes.STRING, defaultValue: 'creating' },
     totalCampaignSubscribers: { type: DataTypes.INTEGER, defaultValue: 0 }
   }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-        campaign.belongsTo(models.user);
-        campaign.belongsTo(models.list);
-        campaign.hasMany(models.campaignsubscriber);
-        campaign.hasOne(models.campaignanalytics);
-      }
-    }
+    // classMethods: {
+    //   associate: function(models) {
+    //     // associations can be defined here
+    //     campaign.belongsTo(models.user);
+    //     campaign.belongsTo(models.list);
+    //     campaign.hasMany(models.campaignsubscriber);
+    //     campaign.hasOne(models.campaignanalytics);
+    //   }
+    // }
   });
+
+  campaign.associate = function(models) {
+    // associations can be defined here
+    campaign.belongsTo(models.user);
+    campaign.belongsTo(models.list);
+    campaign.hasMany(models.campaignsubscriber);
+    campaign.hasOne(models.campaignanalytics);
+  };
+
   return campaign;
 };

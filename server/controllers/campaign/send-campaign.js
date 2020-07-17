@@ -150,6 +150,8 @@ module.exports = (req, res, io, redis) => {
         }
       }
     }).catch(err => {
+      console.error(err);
+      
       res.status(500).send(err);
     });
   }
@@ -192,6 +194,8 @@ module.exports = (req, res, io, redis) => {
         },
         include: [
           {
+            // all:true,
+            // nested: true,
             model: db.campaignsubscriber,
             where: {
               campaignId,
@@ -216,17 +220,16 @@ module.exports = (req, res, io, redis) => {
   }
 
   function updateAnalytics(campaignId, userId, totalEmails) {
-    const findUserById = db.user.findById(userId)
-      .then(foundUser => {
+    
+    const findUserById = db.user.findByPk(userId).then(foundUser => {
         return foundUser.increment('sentEmailsCount', { by: totalEmails });
       })
       .catch(err => {
         res.status(500).send(err);
         console.log(err); //eslint-disable-line
       });
-
-    const findCampaignAnalytics = findUserById
-      .then(() => {
+      
+    const findCampaignAnalytics = findUserById.then(() => {
         return db.campaignanalytics.findOne({
           where: {
             campaignId
@@ -237,11 +240,13 @@ module.exports = (req, res, io, redis) => {
         res.status(500).send(err);
         console.log(err); //eslint-disable-line
       });
-
-    findCampaignAnalytics
-      .then(result => {
+      
+    findCampaignAnalytics.then(result => {    
         generator.next(result.dataValues.id);
         return null;
+      }).catch((err) => {
+        console.log(err);
+        
       });
   }
 };

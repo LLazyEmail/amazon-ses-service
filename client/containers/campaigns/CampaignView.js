@@ -84,13 +84,21 @@ export class CampaignViewComponent extends Component {
 
   componentWillReceiveProps(nextProps) {
     // Set thisCampaign from campaigns once we have it
+    console.log("component receive props", nextProps);
+    
     if (nextProps.campaigns && nextProps.campaigns.length && !this.props.campaigns.length) { // Guarded and statement that confirms campaigns is in the new props, confirms the array isn't empty, and then confirms that current props do not exist
+      console.log("call1");
+      
       this.getSingleCampaign(nextProps);
     }
 
     // Show success/failure toast for send campaign
     const sendCampaignResponseExists = !!nextProps.sendCampaignResponse;
+    console.log('call2');
+    
     const justSentCampaign = !nextProps.isPostingSendCampaign && this.props.isPostingSendCampaign;
+    console.log('call3');
+    
     if (sendCampaignResponseExists && justSentCampaign) {
       this.setState({ haveShownMessage: true });
       if (nextProps.sendCampaignStatus === 200) {
@@ -124,8 +132,12 @@ export class CampaignViewComponent extends Component {
   }
 
   getSingleCampaign(props) {
+    console.log("props view", props);
+    
     // This method retrieves a single campaign from this.props.campaigns based on the parameter in the url
-    const slug = this.props.params.slug;
+    const slug = this.props.match.params.slug;
+    console.log();
+    
     const getCampaignBySlug = props.campaigns.find(campaign => campaign.slug === slug);
     this.setState({
       thisCampaign: getCampaignBySlug
@@ -207,7 +219,9 @@ export class CampaignViewComponent extends Component {
       isPostingSendTest,
       isGetting
     } = this.props;
-
+    console.log("render CampaignView");
+    console.log("thisCampaignView", thisCampaign);
+    
     const downloadUnsentSubscribersUrl = encodeURI(`${window.location.origin}/api/campaign/subscribers/csv?campaignId=${thisCampaign.id}&sent=false`);
     const status = thisCampaign.status;
 
@@ -280,7 +294,10 @@ export class CampaignViewComponent extends Component {
     );
 
     const canRender = !!(thisCampaign);
-
+                console.log("canRender", canRender);
+                console.log("thisCampgaign", thisCampaign);
+                
+                
     return (
       <div>
         {canRender && renderCampaignView()}

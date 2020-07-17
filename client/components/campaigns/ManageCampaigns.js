@@ -1,7 +1,7 @@
 import React from 'react';
 import ManageCampaignsBox from '../../containers/campaigns/ManageCampaignsBox';
 
-const ManageCampaigns = () => {
+const ManageCampaigns = (props) => {
   return (
     <div>
       <div className="content-header">
@@ -11,7 +11,7 @@ const ManageCampaigns = () => {
       </div>
 
       <section className="content">
-        <ManageCampaignsBox />
+        <ManageCampaignsBox history={props.history} />
       </section>
     </div>
   );

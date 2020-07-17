@@ -45,7 +45,7 @@ export class TemplateViewComponent extends Component {
 
   getSingleTemplate(props) {
     // This method retrieves a single campaign from this.props.campaigns based on the parameter in the url
-    const slug = this.props.params.slug;
+    const slug = this.props.match.params.slug;
     const getTemplateBySlug = props.templates.find(template => template.slug === slug);
     this.setState({
       thisTemplate: getTemplateBySlug

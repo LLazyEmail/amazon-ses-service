@@ -2,9 +2,10 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import {createBrowserHistory } from 'history';
+import { createBrowserHistory } from 'history';
+import { CookiesProvider } from 'react-cookie';
 
-import RouterConfig from './routes';
+import RouterConfig from './RouterConfig';
 import configureStore from './store/configureStore';
 require('./favicon.ico'); // Tell webpack to load favicon.ico
 import { syncHistoryWithStore } from 'react-router-redux';
@@ -14,7 +15,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 
 import './utils/adminLte/app.js'; // JS needs to be modified for compatabiltiy with react router
+// import '../node_modules/admin-lte/dist/css/adminlte.min.css';
 // import 'admin-lte/dist/css/AdminLTE.min.css';
+import 'admin-lte/dist/css/adminlte.min.css';
+// import './adminlte.min.css';
+
 import './utils/adminLte/mail-for-good-theme.css'; // Theme for Mail for Good
 
 import 'react-widgets/dist/css/react-widgets.css';
@@ -28,7 +33,10 @@ const store = configureStore();
 const history = syncHistoryWithStore(createBrowserHistory(), store);
 //<RouterConfig history={history} store={store} Router={Router} />
 render(
-  <Provider store={store}>
-    <RouterConfig history={history} />
-  </Provider>, document.getElementById('app')
+  <CookiesProvider>
+    <Provider store={store}>
+      <RouterConfig history={history} />
+    </Provider>
+    </CookiesProvider>, document.getElementById('app')
+  
 );

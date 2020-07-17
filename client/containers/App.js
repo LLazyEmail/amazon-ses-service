@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { RouteTransition } from 'react-router-transition';
-import { Cookies } from 'react-cookie';
+import { Cookies, CookiesProvider, withCookies } from 'react-cookie';
 import PropTypes from 'prop-types';
 
 import Header from '../components/admin-lte/Header.js';
@@ -58,21 +58,24 @@ export class AppComponent extends Component {
     router: PropTypes.object
   }
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.changeAccount = this.changeAccount.bind(this);
     this.changeAccountToSelf = this.changeAccountToSelf.bind(this);
   }
 
   componentWillMount() {
     this.props.emitProfileRequest();
+    const {cookies} = this.props;
     // Before component mount, if the 'user' cookie key exists but this.props.activeAccount.email === undefined then we need to delete this property
     // As it's no longer in sync with the app's state and will incorrectly inform the server to use permissions to another user's account
     if (!this.props.activeAccount.email) {
-      Cookies.remove('user', { path: '/' });
+      console.log(this.props.cookies);
+      
+      cookies.remove('user', { path: '/' });
     }
-    if (!Cookies.load('user') && this.props.activeAccount.email) {
-      Cookies.set('user', this.props.activeAccount.id, { path: '/' });
+    if (!cookies.get('user') && this.props.activeAccount.email) {
+      cookies.set('user', this.props.activeAccount.id, { path: '/' });
     }
   }
 
@@ -83,9 +86,9 @@ export class AppComponent extends Component {
   pushToDashboardOrRefresh() {
     // Push to dashboard or refresh page
     if (this.props.location.pathname === '/')
-      this.context.router.replace('/');
+      this.props.history.replace('/');
     else
-      this.context.router.push('/');
+      this.props.history.push('/');
   }
 
   changeAccount() {
@@ -101,11 +104,13 @@ export class AppComponent extends Component {
   }
 
   render() {
+    console.log("app", this.props.history);
+    
     const { location, isGettingActivePermissions, activePermissionsEmails, activeAccount, ws_notification, consumeNotification, user } = this.props;
     return (
       <div className="wrapper">
         <Header user={user} ws_notification={ws_notification} consumeNotification={consumeNotification} />
-        <Sidebar user={user} activeAccount={activeAccount} />
+        <Sidebar user={user} activeAccount={activeAccount} history={this.props.history} />
 
         <div className="content-wrapper">
           <RouteTransition
@@ -127,4 +132,4 @@ export class AppComponent extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AppComponent);
+export default withCookies(connect(mapStateToProps, mapDispatchToProps)(AppComponent));

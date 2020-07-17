@@ -23,7 +23,7 @@ export class DashboardComponent extends Component {
         <section className="content">
 
           <UserInfo user={this.props.user} totalSentCount={totalSentCount} />
-          <ManageCampaignsBox />
+          <ManageCampaignsBox history={this.props.history} />
           <ManageListsBox />
 
         </section>

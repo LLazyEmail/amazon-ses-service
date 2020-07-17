@@ -27,10 +27,6 @@ export class ManageCampaignsBoxComponent extends Component {
     deleteCampaigns: PropTypes.func.isRequired
   }
 
-  static contextTypes = {
-    router: PropTypes.object.isRequired
-  }
-
   constructor() {
     super();
     this.deleteRows = this.deleteRows.bind(this);
@@ -47,8 +43,10 @@ export class ManageCampaignsBoxComponent extends Component {
   }
 
   getCampaignView(row) {
+    console.log("props ManageCampaignsBox", this.props);
+    
     // Send user to the campaign view container
-    this.context.router.push(`/campaigns/manage/${row.slug}`);
+    this.props.history.push(`/campaigns/manage/${row.slug}`);
   }
 
   render() {

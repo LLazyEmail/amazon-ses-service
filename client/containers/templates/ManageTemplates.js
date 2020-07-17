@@ -29,10 +29,6 @@ export class ManageTemplatesComponent extends Component {
     notify: PropTypes.func.isRequired
   }
 
-  static contextTypes = {
-    router: PropTypes.object.isRequired
-  }
-
   constructor() {
     super();
     this.deleteRows = this.deleteRows.bind(this);
@@ -49,7 +45,7 @@ export class ManageTemplatesComponent extends Component {
 
   getTemplateView(row) {
     // Send user to the campaign view container
-    this.context.router.push(`/templates/manage/${row.slug}`);
+      this.props.history.push(`/templates/manage/${row.slug}`);
   }
 
   render() {

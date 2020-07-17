@@ -38,10 +38,6 @@ export class CreateCampaignComponent extends Component {
     notify: PropTypes.func.isRequired
   }
 
-  static contextTypes = {
-    router: PropTypes.object.isRequired
-  }
-
   constructor() {
     super();
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -67,7 +63,7 @@ export class CreateCampaignComponent extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (this.props.isPosting === true && nextProps.isPosting === false) { // Fires when campaign has been successfully created
-      this.context.router.push(`/campaigns/manage`);
+      this.props.history.push(`/campaigns/manage`);
     }
   }
 

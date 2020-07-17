@@ -82,7 +82,7 @@ export default {
         test: /(\.css|\.scss)$/,
         use: [
           "style-loader",
-          // MiniCssExtractPlugin.loader,
+          MiniCssExtractPlugin.loader,
           {
             loader: "css-loader",
             options: { sourceMap: false }

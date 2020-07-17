@@ -60,9 +60,7 @@ export class ListSignupFormCreatorComponent extends React.Component {
             <br/>
             <p>Optionally, you can customize where the user is redirected on success and failure by inserting a URL in the value of the redirectOnSuccess and redirectOnFailure.</p>
             <br/>
-            <textarea className="form-control" rows="5">
-              {formBody}
-            </textarea>
+            <textarea className="form-control" rows="5" value={formBody} />
           </div>
           <div className="modal-footer">
             <CopyToClipboard text={formBody}

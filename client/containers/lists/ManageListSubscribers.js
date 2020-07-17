@@ -33,7 +33,7 @@ export class ManageListSubscribersComponent extends Component {
   }
 
   componentDidMount() {
-    this.props.getListSubscribers(this.props.params.listId);
+    this.props.getListSubscribers(this.props.match.params.listId);
   }
 
   deleteRows(listSubscribers) { // listSubscriberIds [...Numbers(ids)]
@@ -41,7 +41,7 @@ export class ManageListSubscribersComponent extends Component {
   }
 
   onPageChange(page, sizePerPage, filters={}) {
-    this.props.getListSubscribers(this.props.params.listId, page, sizePerPage, filters);
+    this.props.getListSubscribers(this.props.match.params.listId, page, sizePerPage, filters);
   }
 
   render() {
@@ -59,7 +59,7 @@ export class ManageListSubscribersComponent extends Component {
 
             <div className="box-body">
               <ManageSubscribersTable
-                listId={this.props.params.listId}
+                listId={this.props.match.params.listId}
                 onPageChange={this.onPageChange.bind(this)}
                 data={this.props.subscribers}
                 deleteRows={this.deleteRows.bind(this)}

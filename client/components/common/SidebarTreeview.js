@@ -17,10 +17,6 @@ class SidebarTreeview extends Component {
   }
 }
 
-SidebarTreeview.contextTypes = {
-  router: PropTypes.object.isRequired
-};
-
 SidebarTreeview.propTypes = {
   name: PropTypes.string.isRequired,
   icon: PropTypes.string.isRequired

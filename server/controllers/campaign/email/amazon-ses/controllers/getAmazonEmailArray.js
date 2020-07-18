@@ -43,9 +43,10 @@ module.exports = async function (arrayOfIds, campaignInfo, whiteLabelUrl) {
   // Get the listsubscriber & join campaignsubscriber
   const subscribers = await db.listsubscriber.findAll({
     where: {
-      id: {
-        in: arrayOfIds
-      },
+        id: arrayOfIds,
+      // id: {
+      //   in: arrayOfIds
+      // },
       subscribed: true
     },
     include: [
@@ -58,6 +59,8 @@ module.exports = async function (arrayOfIds, campaignInfo, whiteLabelUrl) {
       }
     ],
     raw: true
+  }).catch(err => {
+    console.error(err);
   });
 
   /**

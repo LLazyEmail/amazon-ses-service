@@ -51,7 +51,7 @@ test('Stop campaign modifies the campaign status appropriately', async function(
   stopCampaignSending(req, res, redis);
 
   res.on('finish', () => {
-    Campaign.findById(1, { raw: true }).then(campaign => {
+    Campaign.findByPk(1, { raw: true }).then(campaign => {
       t.equal('interrupted', campaign.status, 'Campaign status is set to "interrupted"');
     });
   });

@@ -40,7 +40,9 @@ module.exports = function(amazonEmail, campaignInfo, ses) {
       }
     );
 
-    const p2 = CampaignAnalytics.findById(campaignInfo.campaignAnalyticsId)
+    console.log("campaignAnalytics", CampaignAnalytics);
+    
+    const p2 = CampaignAnalytics.findByPk(campaignInfo.campaignAnalyticsId)
       .then(foundCampaignAnalytics => {
         return foundCampaignAnalytics.increment('totalSentCount');
       });

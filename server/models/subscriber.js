@@ -4,19 +4,24 @@ module.exports = function(sequelize, DataTypes) {
     email: DataTypes.STRING,
     customdata: DataTypes.ARRAY(DataTypes.STRING)
   }, {
-    classMethods: {
-      // associate: function(models) {
-      //   // associations can be defined here
-      // },
-      indexes: [
-        {
-          fields:['email']
-        }
-      ]
-    }
+    // classMethods: {
+    //   // associate: function(models) {
+    //   //   // associations can be defined here
+    //   // },
+    //   indexes: [
+    //     {
+    //       fields:['email']
+    //     }
+    //   ]
+    // }
   });
 
-  
+  subscriber.indexes = [
+    {
+      fields:['email']
+    }
+  ];
+
 
   return subscriber;
 };

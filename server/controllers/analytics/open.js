@@ -40,7 +40,7 @@ module.exports = function(req, res) {
       foundCampaignAnalyticsOpen.operatingSystem = headers.os.name;
 
       foundCampaignAnalyticsOpen.save().then(result => {
-        CampaignAnalytics.findById(foundCampaignAnalyticsOpen.campaignanalyticId).then(foundCampaignAnalytics => {
+        CampaignAnalytics.findByPk(foundCampaignAnalyticsOpen.campaignanalyticId).then(foundCampaignAnalytics => {
           foundCampaignAnalytics.increment('openCount').then(result => {
             console.log("saved");
           });

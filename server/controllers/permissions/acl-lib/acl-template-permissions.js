@@ -16,7 +16,7 @@ module.exports = function(id, userId) {
     });
   }
 
-  return ACL.findById(id)
+  return ACL.findByPk(id)
     .then(userInstance => {
       if (userInstance) {
         const templatesAccess = {

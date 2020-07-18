@@ -121,7 +121,7 @@ module.exports = (req, res) => {
       }
 
       // Get custom/additional data (extra columns) needed for mail merge feature
-      db.list.findById(campaign.listId, {
+      db.list.findByPk(campaign.listId, {
         attributes: ['additionalFields'],
         raw: true
       }).then(list => {

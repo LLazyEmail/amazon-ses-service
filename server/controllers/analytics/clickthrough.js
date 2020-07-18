@@ -43,7 +43,7 @@ module.exports = function(req, res) {
       foundCampaignAnalyticsLink.operatingSystem = headers.os.name;
 
       foundCampaignAnalyticsLink.save().then(result => {
-        CampaignAnalytics.findById(foundCampaignAnalyticsLink.campaignanalyticId).then(foundCampaignAnalytics => {
+        CampaignAnalytics.findByPk(foundCampaignAnalyticsLink.campaignanalyticId).then(foundCampaignAnalytics => {
           foundCampaignAnalytics.increment('clickthroughCount').then(result => {
             console.log("saved");
           });

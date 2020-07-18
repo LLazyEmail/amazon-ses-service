@@ -69,7 +69,7 @@ module.exports = function(req, res) {
 
   // Get user instance of the authenticated user
   function authUser() {
-    User.findById(req.user.id)
+    User.findByPk(req.user.id)
     .then(userInstance => {
       if(userInstance) {
         generator.next(userInstance);

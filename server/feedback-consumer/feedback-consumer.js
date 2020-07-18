@@ -151,7 +151,7 @@ function receiveMessageCallback(message, done) {
           }).then(ParentCampaignAnalytics => {
             return ParentCampaignAnalytics.increment(incrementField);
           }).then(result => {
-            return ListSubscriber.findById(updatedCampaignSubscriber.dataValues.listsubscriberId)
+            return ListSubscriber.findByPk(updatedCampaignSubscriber.dataValues.listsubscriberId)
           }).then(listSubscriber => {
             listSubscriber.mostRecentStatus = recentStatus;
 

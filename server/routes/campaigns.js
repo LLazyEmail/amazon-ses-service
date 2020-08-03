@@ -4,7 +4,8 @@ const cookieParser = require('cookie-parser')();
 
 // Campaign controllers
 const getCampaigns = require('../controllers/campaign/get-campaigns');
-const createCampaign = require('../controllers/campaign/create-campaign');
+// const createCampaign = require('../controllers/campaign/create-campaign');
+const createCampaign = require('../controllers/campaign/hackernoon-create-campaign');
 const deleteCampaigns = require('../controllers/campaign/delete-campaigns');
 const exportSentUnsentCSV = require('../controllers/campaign/export-sent-unsent-csv');
 const stopCampaignSending = require('../controllers/campaign/stop-campaign-sending');

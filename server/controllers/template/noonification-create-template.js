@@ -1,6 +1,6 @@
 const db = require('../../models');
 const slug = require('slug');
-const hackernoon = require('./hackernoon-template');
+const hackernoonTemplate = require('../../hackernoon-template');
 
 module.exports = (req, res) => {
 
@@ -13,8 +13,7 @@ module.exports = (req, res) => {
   }
 
   const emailBodyType = req.body.emailBody;
-  console.log(emailBodyType);
-  
+
   db.template.findOrCreate({
     where: {
       name: req.body.templateName,
@@ -25,7 +24,7 @@ module.exports = (req, res) => {
       fromName: req.body.fromName || '',
       fromEmail: req.body.fromEmail || '',
       emailSubject: req.body.emailSubject || '',
-      emailBody: emailBodyType,
+      emailBody: hackernoonTemplate,
       trackingPixelEnabled: req.body.trackingPixelEnabled,
       trackLinksEnabled: req.body.trackLinksEnabled,
       unsubscribeLinkEnabled: req.body.unsubscribeLinkEnabled,

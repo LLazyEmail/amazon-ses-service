@@ -15,7 +15,6 @@ let production = {
 
 if (urlPSQL) {
   const PSQLCreds = urlPSQL.slice(11);
-  console.log("pSQLCres", PSQLCreds);
   const splittedDataPSQL = PSQLCreds.split(':');
 
   const username = splittedDataPSQL[0];
@@ -28,9 +27,6 @@ if (urlPSQL) {
 
   const port = splittedHostDB[0];
   const database = splittedHostDB[1];
-
-  console.log("username", username);
-  console.log("host", host);
   production = {
     ...production,
     username,
@@ -40,7 +36,7 @@ if (urlPSQL) {
   };
 }
 
-console.log(production);
+console.log("Production", production);
 
 const dataPSQL = {
   "development": {

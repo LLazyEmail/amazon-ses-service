@@ -7,6 +7,7 @@ const feedbackConsumer = require('./feedback-consumer');
 const Campaign = require('../models').campaign;
 
 let redisSettings = null;
+console.log("HEROku", process.env.HEROKU);
 if(process.env.HEROKU){
   redisSettings = {url: process.env.REDIS_URL}
 }else{

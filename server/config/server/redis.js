@@ -27,7 +27,7 @@ module.exports = () => {
     };
   }
 
-
+  console.log(redisSettings);
   const client = createRedisClient(redisSettings,redisUrl); 
   const subscriber = createRedisClient(redisSettings,redisUrl);  // Need to create separate connections
   const publisher = createRedisClient(redisSettings,redisUrl);   // for pub-sub

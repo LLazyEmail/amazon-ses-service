@@ -9,7 +9,11 @@ let production = {
     "logging": false,
     "url": process.env.DATABASE_URL,
     "ssl": process.env.HEROKU ? true : false,
-    "dialectOptions": process.env.HEROKU ? { "ssl": true } : {}
+    // "dialectOptions": process.env.HEROKU ? { "ssl": true } : {}
+    "dialectOptions": process.env.HEROKU ? { "ssl": {
+      require: true,
+      rejectUnauthorized: false
+    } } : {}
 };
 
 

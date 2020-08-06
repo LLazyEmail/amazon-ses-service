@@ -22,8 +22,7 @@ console.log("userId", req.user.id);
       'email'
     ]
   }).then(settingsInstance => {
-    console.log("settingsInstance", settingsInstance);
-    
+
     const settingsObject = settingsInstance.get({ plain:true });
     const settingsObjectToBool = {};
     Object.keys(settingsObject).forEach(key => {

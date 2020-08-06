@@ -4,8 +4,12 @@
  * @param {object} campaignInfo - Information about this campaign
  * @return {object} Formatted email object
  */
+const noonNotificationBanner = require('../../../../../hackernoon-template/noon-notification-banner');
+const sponsorTop = require('../../../../../hackernoon-template/sponsor-top');
 const articles = require('../../../../../hackernoon-template/articles');
-const sponsor = require('../../../../../hackernoon-template/sponsor');
+const sponsorBottom = require('../../../../../hackernoon-template/sponsor-bottom');
+const socialBlock = require('../../../../../hackernoon-template/social-block');
+const footer = require('../../../../../hackernoon-template/footer');
 
 module.exports = (task, campaignInfo) => {
   console.log("call hackernoon-amazon.js");
@@ -25,8 +29,12 @@ module.exports = (task, campaignInfo) => {
   // };
   let templateData = {
     name: "Vadim1",
+    noonNotificationBanner,
+    sponsorTop,
     articles,
-    sponsor
+    sponsorBottom,
+    socialBlock,
+    footer
 };
 //   let templateData = {
 //     favoriteanimal: "Dog",
@@ -53,7 +61,7 @@ module.exports = (task, campaignInfo) => {
   } else {
     // Object.assign(email.Message.Body, { Html: { Data: campaignInfo.emailBody } });
     Object.assign(email, { 
-      Template: 'HN6',
+      Template: 'HN8',
       TemplateData: JSON.stringify(templateData) 
     });
   }

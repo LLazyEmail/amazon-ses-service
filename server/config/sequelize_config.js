@@ -40,8 +40,6 @@ if (urlPSQL) {
   };
 }
 
-console.log("Production", production);
-
 const dataPSQL = {
   "development": {
     "username": process.env.PSQL_USERNAME,

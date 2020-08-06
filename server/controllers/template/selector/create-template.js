@@ -13,7 +13,7 @@ const createTemplate = async ({ TemplateName, ses }) => {
             Template: {
                 TemplateName: TemplateName || 'test-template',
                 SubjectPart: 'Greetings, {{name}}!',
-                HtmlPart: hackernoonTemplate,
+                HtmlPart: hackernoonTemplateNew,
                 TextPart: "Dear {{name}}"
             }
         }

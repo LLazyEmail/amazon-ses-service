@@ -1,7 +1,7 @@
 // const zappierTemplateHTML = require('../envelops/zappier-template');
 const zappierTemplate = require('../envelops/zappier-template');
 const hackernoonTemplate = require('../../../hackernoon-template');
-const hackernoon-template-new = require('../envelops/hackernoon-template-new')
+const hackernoonTemplateNew = require('../envelops/hackernoon-template-new')
 // var fs = require('fs');
 // const path = require('path');
 

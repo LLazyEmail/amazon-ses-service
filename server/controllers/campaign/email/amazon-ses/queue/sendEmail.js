@@ -40,8 +40,6 @@ module.exports = function(amazonEmail, campaignInfo, ses) {
         limit: 1
       }
     );
-
-    console.log("campaignAnalytics", CampaignAnalytics);
     
     const p2 = CampaignAnalytics.findByPk(campaignInfo.campaignAnalyticsId)
       .then(foundCampaignAnalytics => {

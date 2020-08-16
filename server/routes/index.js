@@ -1,5 +1,6 @@
 const path = require('path');
 const bodyParser = require('body-parser');
+
 const auth = require('./auth');
 const parseJson = bodyParser.json();
 
@@ -21,8 +22,9 @@ const { apiIsAuth, isAuth } = require('./middleware/auth');
 // Routes
 const lists = require('./lists');
 const templates = require('./templates');
+const sponsors = require('./sponsors');
 const campaigns = require('./campaigns');
-const accountsManagement = require('./accountsManagement')
+const accountsManagement = require('./accountsManagement');
 const permissions = require('./permissions');
 
 module.exports = (app, passport, io, redis) => {
@@ -48,6 +50,7 @@ module.exports = (app, passport, io, redis) => {
   /* Templates */
   templates(app);
 
+  sponsors(app);
   /* Lists */
   lists(app, io);
 

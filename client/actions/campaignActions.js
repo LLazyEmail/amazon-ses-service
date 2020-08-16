@@ -7,9 +7,10 @@ import {
   REQUEST_POST_CREATETEMPLATE, COMPLETE_POST_CREATETEMPLATE,
   REQUEST_GET_TEMPLATES, COMPLETE_GET_TEMPLATES,
   COMPLETE_DELETE_CAMPAIGNS, COMPLETE_DELETE_TEMPLATES,
-  REQUEST_STOP_SENDING, COMPLETE_STOP_SENDING
+  REQUEST_STOP_SENDING, COMPLETE_STOP_SENDING,
+  REQUEST_GET_SPONSORS, COMPLETE_GET_SPONSORS
 } from '../constants/actionTypes';
-import { API_CAMPAIGN_ENDPOINT, API_SEND_CAMPAIGN_ENDPOINT, API_TEMPLATE_ENDPOINT, API_TEST_SEND_CAMPAIGN_ENDPOINT, API_STOP_SENDING } from '../constants/endpoints';
+import { API_CAMPAIGN_ENDPOINT, API_SEND_CAMPAIGN_ENDPOINT, API_TEMPLATE_ENDPOINT, API_TEST_SEND_CAMPAIGN_ENDPOINT, API_STOP_SENDING, API_SPONSOR_ENDPOINT } from '../constants/endpoints';
 import { notify } from './notificationActions';
 import { destroy } from 'redux-form';
 
@@ -23,7 +24,7 @@ export function completePostCreateCampaign() {
 
 // Create new template
 export function requestPostCreateTemplate() {
-  return { type: REQUEST_POST_CREATETEMPLATE};
+  return { type: REQUEST_POST_CREATETEMPLATE };
 }
 export function completePostCreateTemplate() {
   return { type: COMPLETE_POST_CREATETEMPLATE };
@@ -59,6 +60,14 @@ export function requestGetTemplates() {
 }
 export function completeGetTemplates(templates) {
   return { type: COMPLETE_GET_TEMPLATES, templates };
+}
+
+export function requestGetSponsors() {
+  return { type: REQUEST_GET_SPONSORS };
+}
+
+export function completeGetSponsors(sponsors) {
+  return { type: COMPLETE_GET_SPONSORS, sponsors };
 }
 
 // Delete campaign/template
@@ -147,6 +156,7 @@ export function postCreateCampaign(form, reset) {
       reset();
     };
     xhr.setRequestHeader('Content-Type', 'application/json');
+    console.log("form inside action", form);
     xhr.send(form);
   };
 }
@@ -207,6 +217,28 @@ export function getTemplates() {
       dispatch(completeGetTemplates(templatesArray));
     };
     xhr.send();
+  };
+}
+
+export function getSponsors() {
+  return dispatch => {
+    dispatch(requestGetSponsors());
+    try{
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', API_SPONSOR_ENDPOINT);
+      xhr.setRequestHeader('Accept', 'application/json, text/javascript');
+      xhr.onerror = (err) => {
+        console.log(err);
+      }
+      xhr.onload = () => {
+        const sponsorsArray = JSON.parse(xhr.responseText);
+        dispatch(completeGetSponsors(sponsorsArray));
+      };
+      xhr.send();
+    }catch(err) {
+      console.log(err);
+    }
+    
   };
 }
 

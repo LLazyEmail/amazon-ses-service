@@ -3,6 +3,8 @@ const email = require('./email');
 const AWS = require('aws-sdk');
 const moment = require('moment');
 
+const Sponsor = require('../../models').sponsor;
+
 module.exports = (req, res, io, redis) => {
 
   const userId = req.user.id;
@@ -66,7 +68,18 @@ module.exports = (req, res, io, redis) => {
       where: {
         id: campaignId,
         userId: userId
-      }
+      },
+      include: [
+        {
+          model: Sponsor,
+          required: true,
+          attributes: [
+            'sponsorName',
+            'sponsorTop',
+            'sponsorBottom'
+          ]
+        }
+      ]
     }).then(campaignInstance => {
       if (!campaignInstance) {
         res.status(401).send();
@@ -100,7 +113,8 @@ module.exports = (req, res, io, redis) => {
           trackingPixelEnabled,
           trackLinksEnabled,
           unsubscribeLinkEnabled,
-          status
+          status,
+          sponsor
         } = campaignObject;
 
         generator.next({
@@ -115,7 +129,8 @@ module.exports = (req, res, io, redis) => {
           trackingPixelEnabled,
           trackLinksEnabled,
           unsubscribeLinkEnabled,
-          status
+          status,
+          sponsor
         });
       }
     }).catch(err => {

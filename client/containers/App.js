@@ -66,8 +66,6 @@ export class AppComponent extends Component {
     // Before component mount, if the 'user' cookie key exists but this.props.activeAccount.email === undefined then we need to delete this property
     // As it's no longer in sync with the app's state and will incorrectly inform the server to use permissions to another user's account
     if (!this.props.activeAccount.email) {
-      console.log(this.props.cookies);
-      
       cookies.remove('user', { path: '/' });
     }
     if (!cookies.get('user') && this.props.activeAccount.email) {
@@ -100,9 +98,6 @@ export class AppComponent extends Component {
   }
 
   render() {
-    console.log("app", this.props.history);
-    console.log("activeAccount", this.props.activeAccount);
-    
     const { location, isGettingActivePermissions, activePermissionsEmails, activeAccount, ws_notification, consumeNotification, user } = this.props;
     return (
       <div className="wrapper">

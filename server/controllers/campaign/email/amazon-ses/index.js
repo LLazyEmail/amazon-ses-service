@@ -21,7 +21,6 @@ module.exports = async function (generator, redis, campaignAndListInfo, amazonAc
   const {
     campaignInfo, // See object passed by send-campaign.js, contains info about the campaigns table
   } = campaignAndListInfo;
-
   const {
     accessKey, // Amazon access key - str
     secretKey, // Amazon secret key - str
@@ -48,7 +47,6 @@ module.exports = async function (generator, redis, campaignAndListInfo, amazonAc
     }
   });
   redis.subscriber.subscribe('stop-campaign-sending');
-  console.log("call1 after stop campaign sending");
   
   /**
    * @description Start the campaign send.

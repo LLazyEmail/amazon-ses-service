@@ -20,12 +20,15 @@ const CreateCampaignForm = props => {
     nextPage,
     reset,
     applyTemplate,
+    applySponsor,
     textEditorType,
     passResetToState
   } = props;
 
   const lists = props.lists.map(x => x.name);
   const templates = props.templates.map(x => x.name);
+  const sponsors = props.sponsors.map(x => x.sponsorName);
+
   const nameArray = [
     'listName',
     'campaignName',
@@ -55,16 +58,23 @@ const CreateCampaignForm = props => {
     applyTemplate(foundTemplate);
   };
 
+  const applyFormSponsor = (applySponsorValue) => {
+    const foundSponsor = props.sponsors.find(x => x.sponsorName === applySponsorValue);
+    applySponsor(foundSponsor);
+  };
+
   const resetForm = () => {
     reset();
   };
-
+  
   return (
     <div>
       <h3>Apply template</h3>
       <Combobox id="templates" data={templates} suggest={true} onSelect={value => applyForm(value)} filter="contains" />
       <br/>
-
+      <h3>Select a sponsor</h3>
+      <Combobox id="hackernoonSponsors" data={sponsors} suggest={true} onSelect={value => applyFormSponsor(value)} filter="contains" />
+      <br/>
       <form onSubmit={resetFormAndSubmit}>
         <h3>Select a List</h3>
         <div>
@@ -109,7 +119,9 @@ CreateCampaignForm.propTypes = {
   nextPage: PropTypes.func.isRequired,
   lists: PropTypes.array.isRequired,
   templates: PropTypes.array.isRequired,
+  sponsors: PropTypes.array.isRequired,
   applyTemplate: PropTypes.func.isRequired,
+  applySponsor: PropTypes.func.isRequired,
   textEditorType: PropTypes.string.isRequired,
   passResetToState: PropTypes.func.isRequired,
 };

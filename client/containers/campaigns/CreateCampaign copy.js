@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { initialize } from 'redux-form';
 import CreateCampaignForm from '../../components/campaigns/CreateCampaignForm';
 import PreviewCampaignForm from '../../components/campaigns/PreviewCampaignForm';
-import { postCreateCampaign, getTemplates, getSponsors } from '../../actions/campaignActions';
+import { postCreateCampaign, getTemplates } from '../../actions/campaignActions';
 import { notify } from '../../actions/notificationActions';
 import { getLists } from '../../actions/listActions';
 import FontAwesome from 'react-fontawesome';
@@ -17,12 +17,11 @@ function mapStateToProps(state) {
     isPosting: state.createCampaign.isPosting,
     lists: state.manageList.lists,
     isGetting: state.manageList.isGetting,
-    templates: state.manageTemplates.templates,
-    sponsors: state.manageSponsors.sponsors
+    templates: state.manageTemplates.templates
   };
 }
 
-const mapDispatchToProps = { postCreateCampaign, getLists, getTemplates, getSponsors, initialize, notify };
+const mapDispatchToProps = { postCreateCampaign, getLists, getTemplates, initialize, notify };
 
 export class CreateCampaignComponent extends Component {
 
@@ -34,9 +33,7 @@ export class CreateCampaignComponent extends Component {
     lists: PropTypes.array.isRequired,
     isGetting: PropTypes.bool.isRequired,
     getTemplates: PropTypes.func.isRequired,
-    getSponsors: PropTypes.func.isRequired,
     templates: PropTypes.array.isRequired,
-    sponsors: PropTypes.array.isRequired,
     initialize: PropTypes.func.isRequired,
     notify: PropTypes.func.isRequired
   }
@@ -48,7 +45,6 @@ export class CreateCampaignComponent extends Component {
     this.lastPage = this.lastPage.bind(this);
     this.applyTemplate = this.applyTemplate.bind(this);
     this.passResetToState = this.passResetToState.bind(this);
-    this.applySponsor = this.applySponsor.bind(this);
   }
 
   state = {
@@ -57,14 +53,12 @@ export class CreateCampaignComponent extends Component {
       campaignName: `Campaign - ${moment().format('l, h:mm:ss')}`,
       type: 'Plaintext'
     },
-    reset: null,
-    sponsor: null
+    reset: null
   }
 
   componentDidMount() {
     this.props.getLists();
     this.props.getTemplates();
-    this.props.getSponsors();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -78,12 +72,11 @@ export class CreateCampaignComponent extends Component {
     // Extract emailBodyPlaintext or emailBodyHTML as our emailBody
     const correctForm = Object.assign({}, formValues, {
       emailBody: formValues[`emailBody${formValues.type}`],
-      sponsor: this.state.sponsor
     });
 
     delete correctForm[`emailBody${formValues.type}`];
 
-    this.props.postCreateCampaign(JSON.stringify(correctForm), this.state.sponsor, this.state.reset);
+    this.props.postCreateCampaign(JSON.stringify(correctForm), this.state.reset);
     this.props.notify({
       message: 'Campaign is being created - it will be ready to send soon.',
       colour: 'green'
@@ -106,17 +99,6 @@ export class CreateCampaignComponent extends Component {
     }
   }
 
-  applySponsor(sponsor){
-    if(!sponsor){
-      this.props.notify({message: 'You have not selected a valid template'});
-    }
-
-    this.setState({
-      ...this.state,
-      sponsor
-    });
-  }
-
   nextPage() {
     this.setState({ page: this.state.page + 1 });
   }
@@ -131,7 +113,7 @@ export class CreateCampaignComponent extends Component {
 
   render() {
     const { page, initialFormValues } = this.state;
-    const { lists, templates, sponsors, form, isGetting, isPosting } = this.props;
+    const { lists, templates, form, isGetting, isPosting } = this.props;
     
     const type = (this.props.form && this.props.form.values.type) ? this.props.form.values.type : this.state.initialFormValues.type;
 
@@ -151,9 +133,7 @@ export class CreateCampaignComponent extends Component {
                   passResetToState={this.passResetToState}
                   textEditorType={type}
                   applyTemplate={this.applyTemplate}
-                  applySponsor={this.applySponsor}
                   templates={templates}
-                  sponsors={sponsors}
                   lists={lists}
                   nextPage={this.nextPage}
                   initialValues={initialFormValues} />}

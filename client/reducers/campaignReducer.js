@@ -6,7 +6,8 @@ import {
   REQUEST_POST_SENDTESTEMAIL, COMPLETE_POST_SENDTESTEMAIL,
   REQUEST_POST_CREATETEMPLATE, COMPLETE_POST_CREATETEMPLATE,
   REQUEST_GET_TEMPLATES, COMPLETE_GET_TEMPLATES,
-  COMPLETE_DELETE_CAMPAIGNS, COMPLETE_DELETE_TEMPLATES
+  COMPLETE_DELETE_CAMPAIGNS, COMPLETE_DELETE_TEMPLATES, REQUEST_GET_SPONSORS, COMPLETE_GET_SPONSORS,
+  COMPLETE_DELETE_SPONSORS
 } from '../constants/actionTypes';
 
 export function createCampaign(state = initialState.createCampaign, action) {
@@ -89,6 +90,32 @@ export function manageTemplates(state = initialState.manageTemplates, action) {
   }
 }
 
+export function manageSponsors(state = initialState.manageSponsors, action){
+  switch(action.type){
+    case REQUEST_GET_SPONSORS: {
+      return {
+        ...state,
+        isGetting: true
+      };
+    }
+    case COMPLETE_GET_SPONSORS: {
+      return {
+        ...state,
+        sponsors: action.sponsors,
+        isGetting: false
+      };
+    }
+    case COMPLETE_DELETE_SPONSORS: {
+      return {
+        ...state,
+        sponsors: action.sponsors
+      };
+    }
+    default: 
+    return state;
+  }
+}
+
 export function sendCampaign(state = initialState.sendCampaign, action) {
   switch (action.type) {
     case REQUEST_POST_SENDCAMPAIGN: {
@@ -133,5 +160,6 @@ export default {
   manageCampaign,
   sendCampaign,
   sendTest,
-  manageTemplates
+  manageTemplates,
+  manageSponsors
 };

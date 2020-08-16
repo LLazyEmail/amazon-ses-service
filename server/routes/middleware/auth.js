@@ -10,6 +10,8 @@ module.exports = {
   },
   // Check user accessing API route is authenticated
   apiIsAuth(req, res, next) {
+    console.log("authentication");
+    console.log(req.isAuthenticated());
     if (req.isAuthenticated()) {
       return next();
     } else {

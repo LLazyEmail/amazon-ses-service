@@ -7,7 +7,6 @@ module.exports = function(req, res) {
   /*
     NOTE: This file returns boolean values to the client for fields that have values assigned.
   */
-console.log("userId", req.user.id);
 
   Setting.findOne({
     where:{

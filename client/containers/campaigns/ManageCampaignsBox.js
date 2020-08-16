@@ -43,8 +43,6 @@ export class ManageCampaignsBoxComponent extends Component {
   }
 
   getCampaignView(row) {
-    console.log("props ManageCampaignsBox", this.props);
-    
     // Send user to the campaign view container
     this.props.history.push(`/campaigns/manage/${row.slug}`);
   }

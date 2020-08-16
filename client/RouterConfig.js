@@ -46,16 +46,12 @@ const mapStateToProps = (state) => ({
 // }
 
 const TestComponent = (props) => {
-  console.log("test");
-  console.log("props", props);
-
   return (
     <div>Location {props.location.pathname}</div>
   )
 };
 
 const CampaignsRoutes = (props) => {
-  console.log("campgainsRoutes");
   return (
     <Switch>
       <Route path="/campaigns/create" component={CreateCampaign} />
@@ -66,7 +62,6 @@ const CampaignsRoutes = (props) => {
 };
 
 const TemplatesRoutes = () => {
-  console.log("templates routes");
 
   return (
     <Switch>
@@ -137,7 +132,6 @@ class RouterConfig extends Component {
   render() {
 
     const { history, location, match } = this.props;
-    console.log("history", history);
 
     return (
       <>

@@ -156,7 +156,6 @@ export function postCreateCampaign(form, reset) {
       reset();
     };
     xhr.setRequestHeader('Content-Type', 'application/json');
-    console.log("form inside action", form);
     xhr.send(form);
   };
 }

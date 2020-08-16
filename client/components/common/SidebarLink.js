@@ -10,7 +10,6 @@ class SidebarLink extends Component {
     return (
       <li className="nav-item">
         <NavLink {...this.props} isActive={(match, location) =>{
-        console.log("match", match);
         if (!match) {
           return false;
         }

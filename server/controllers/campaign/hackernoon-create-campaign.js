@@ -12,7 +12,6 @@ module.exports = (req, res, io) => {
         -- Validate other things? Validations can be added as promises to validationComplete and run concurrently
         -- Clean up sequelize code
   */
-
   const userId = req.user.id;
 
   // Will mutate the below object to extract info we need during validation checks
@@ -41,9 +40,6 @@ module.exports = (req, res, io) => {
     } else {
 
       const emailBodyType = req.body.emailBody;
-      console.log("user id", req.user.id);
-      console.log("listId", valueFromValidation.listId);
-      
       // Find or create the campaign
       db.campaign.findOrCreate({
         where: {
@@ -61,6 +57,7 @@ module.exports = (req, res, io) => {
           trackLinksEnabled: req.body.trackLinksEnabled,
           unsubscribeLinkEnabled: req.body.unsubscribeLinkEnabled,
           userId: req.user.id,
+          sponsorId: req.body.sponsor.id,
           listId: valueFromValidation.listId,
           slug: slug(req.body.campaignName)
         }

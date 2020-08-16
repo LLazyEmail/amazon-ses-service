@@ -39,8 +39,6 @@ module.exports = (req, res, io) => {
     } else {
 
       const emailBodyType = req.body.emailBody;
-      console.log("user id", req.user.id);
-      console.log("listId", valueFromValidation.listId);
       
       // Find or create the campaign
       db.campaign.findOrCreate({

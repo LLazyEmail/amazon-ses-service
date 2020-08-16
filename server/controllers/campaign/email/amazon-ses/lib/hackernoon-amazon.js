@@ -5,14 +5,13 @@
  * @return {object} Formatted email object
  */
 const noonNotificationBanner = require('../../../../../hackernoon-template/noon-notification-banner');
-const sponsorTop = require('../../../../../hackernoon-template/sponsor-top');
+// const sponsorTop = require('../../../../../hackernoon-template/sponsor-top');
 const articles = require('../../../../../hackernoon-template/articles');
-const sponsorBottom = require('../../../../../hackernoon-template/sponsor-bottom');
+// const sponsorBottom = require('../../../../../hackernoon-template/sponsor-bottom');
 const socialBlock = require('../../../../../hackernoon-template/social-block');
 const footer = require('../../../../../hackernoon-template/footer');
 
 module.exports = (task, campaignInfo) => {
-  console.log("call hackernoon-amazon.js");
   
   // Ref https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/SES.html#sendEmail-property
   // const email = {
@@ -27,12 +26,13 @@ module.exports = (task, campaignInfo) => {
   //     }
   //   }
   // };
+
   let templateData = {
-    name: "Vadim1",
+    name: "Vadim2",
     noonNotificationBanner,
-    sponsorTop,
+    sponsorTop: campaignInfo.sponsor.sponsorTop,
     articles,
-    sponsorBottom,
+    sponsorBottom: campaignInfo.sponsor.sponsorBottom,
     socialBlock,
     footer
 };

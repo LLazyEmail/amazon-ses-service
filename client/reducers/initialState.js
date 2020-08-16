@@ -13,6 +13,10 @@ const initialState = {
     templates: [],
     isGetting: false
   },
+  manageSponsors: {
+    sponsors: [],
+    isGetting: false
+  },
   sendCampaign: {
     isPosting: false,
     sendCampaignResponse: '',

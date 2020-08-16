@@ -8,6 +8,7 @@ export const API_SEND_CAMPAIGN_ENDPOINT = BASE_URL + '/api/send';
 export const API_TEST_SEND_CAMPAIGN_ENDPOINT = BASE_URL + '/api/test';
 export const API_TEMPLATE_ENDPOINT = BASE_URL + '/api/template';
 export const API_STOP_SENDING = BASE_URL + '/api/stop';
+export const API_SPONSOR_ENDPOINT = BASE_URL + '/api/sponsor';
 
 // Lists
 // should refactor above variables for consistency (API_...)

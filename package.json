@@ -136,7 +136,7 @@
     "jsdom": "16.4.0",
     "jsdom-global": "3.0.2",
     "mini-css-extract-plugin": "0.9.0",
-    "mocha": "7.2.0",
+    "mocha": "8.1.2",
     "node-amazon-ses-simulator": "1.0.1",
     "node-mocks-http": "1.8.1",
     "node-sass": "4.14.1",

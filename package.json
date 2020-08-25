@@ -144,7 +144,7 @@
     "react-fontawesome": "1.7.1",
     "redux-immutable-state-invariant": "2.1.0",
     "rewire": "5.0.0",
-    "sass-loader": "9.0.3",
+    "sass-loader": "10.0.1",
     "sinon": "9.0.3",
     "style-loader": "1.2.1",
     "tap-spec": "5.0.0",

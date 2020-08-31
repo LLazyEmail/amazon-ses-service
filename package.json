@@ -131,7 +131,7 @@
     "eslint-watch": "7.0.0",
     "extract-text-webpack-plugin": "2.1.2",
     "fakeredis": "2.0.0",
-    "file-loader": "6.0.0",
+    "file-loader": "6.1.0",
     "html-webpack-plugin": "4.3.0",
     "jsdom": "16.4.0",
     "jsdom-global": "3.0.2",

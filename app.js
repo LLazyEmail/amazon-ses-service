@@ -4,6 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const articles = require('./server/routes/articles/articles.routes');
+const sponsors = require('./server/routes/sponsors/sponsors.routes');
 
 
 const app = express();
@@ -16,6 +17,8 @@ app.get('/', (req, res, next) => {
 });
 
 app.use('', articles);
+app.use('', sponsors);
+
 app.listen(process.env.PORT || 3000, () => {
   console.log("Server started on port: 3000");
 });

@@ -60,7 +60,7 @@
     "express-session": "^1.17.1",
     "geoip-lite": "^1.4.2",
     "handlebars": "^4.7.6",
-    "helmet": "^3.22.0",
+    "helmet": "^4.0.0",
     "highcharts": "^8.1.2",
     "history": "^5.0.0",
     "jquery": "^3.5.1",

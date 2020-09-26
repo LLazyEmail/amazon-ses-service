@@ -3,7 +3,7 @@ const path = require('path');
 const express = require('express');
 const passport = require('passport');
 const helmet = require('helmet');
-const cookieSession = require('cookie-session');
+// const cookieSession = require('cookie-session');
 const configureSequelize = require('./sequelize');
 const configureWebpackDevMiddleware = require('./webpack-dev-middleware');
 const configureRedis = require('./redis');
@@ -37,11 +37,12 @@ module.exports = () => {
   app.use(passport.initialize()); // Initialise passport
   app.use(passport.session()); // Use passport middleware for auth
   app.use(helmet()); // Implements various security tweaks to http response headers
-
+  // console.log("cookieSession", process.env.COOKIE_SESSION);
   // app.use(
   //   cookieSession({
+  //     // name:'session',
   //     maxAge: 30 * 24 * 60 * 60 * 1000,
-  //     keys: [process.env.COOKIE_SESSION]
+  //     keys: ['connect.sid']
   //   })
   // );
 

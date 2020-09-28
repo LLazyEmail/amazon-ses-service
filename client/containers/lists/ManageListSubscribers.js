@@ -40,7 +40,7 @@ export class ManageListSubscribersComponent extends Component {
     this.props.deleteListSubscribers(listSubscribers, this.props.subscribers);
   }
 
-  onPageChange(page, sizePerPage, filters={}) {
+  onPageChange(page, sizePerPage, filters = {}) {
     this.props.getListSubscribers(this.props.match.params.listId, page, sizePerPage, filters);
   }
 
@@ -52,23 +52,25 @@ export class ManageListSubscribersComponent extends Component {
         </div>
 
         <section className="content">
-          <div className="box box-primary">
-            <div className="box-header">
-              <h3 className="box-title">Subscribers</h3>
-            </div>
+          <div className="container-fluid">
+            <div className="card">
+              <div className="card-header">
+                <h3 className="card-title">Subscribers</h3>
+              </div>
 
-            <div className="box-body">
-              <ManageSubscribersTable
-                listId={this.props.match.params.listId}
-                onPageChange={this.onPageChange.bind(this)}
-                data={this.props.subscribers}
-                deleteRows={this.deleteRows.bind(this)}
-                additionalFields={this.props.additionalFields}
-                total={this.props.totalListSubscribers}
-              />
-              {this.props.isGetting && <div className="overlay">
-                <FontAwesome name="refresh" spin/>
-              </div>}
+              <div className="card-body">
+                <ManageSubscribersTable
+                  listId={this.props.match.params.listId}
+                  onPageChange={this.onPageChange.bind(this)}
+                  data={this.props.subscribers}
+                  deleteRows={this.deleteRows.bind(this)}
+                  additionalFields={this.props.additionalFields}
+                  total={this.props.totalListSubscribers}
+                />
+                {this.props.isGetting && <div className="overlay">
+                  <FontAwesome name="refresh" spin />
+                </div>}
+              </div>
             </div>
           </div>
         </section>

@@ -12,7 +12,7 @@ function mapStateToProps(state) {
     form: state.form.createAccount,
     isPosting: state.createAccount.isPosting,
     response: state.createAccount.response,
-    queriersEmail : state.profile.user.email
+    queriersEmail: state.profile.user.email
   };
 }
 
@@ -44,7 +44,7 @@ export class CreateUserComponent extends Component {
   }
 
   handleSubmit() {
-    let requestData = {...this.props.form.values};
+    let requestData = { ...this.props.form.values };
     requestData.queriersEmail = this.props.queriersEmail;
     this.props.postCreateNewUser(requestData);
   }
@@ -55,7 +55,7 @@ export class CreateUserComponent extends Component {
       email: '',
       password: '',
       passwordConfirm: '',
-      isAdmin:false
+      isAdmin: false
     };
 
     return (
@@ -65,14 +65,16 @@ export class CreateUserComponent extends Component {
         </div>
 
         <section className="content col-md-6">
-          <div className="box box-primary">
-            <div className="box-body">
-              <CreateAccountForm handleSubmit={this.handleSubmit} initialValues={initialValues} />
-            </div>
+          <div className="container-fluid">
+            <div className="card">
+              <div className="card-body">
+                <CreateAccountForm handleSubmit={this.handleSubmit} initialValues={initialValues} />
+              </div>
 
-            {isPosting && <div className="overlay">
-              <FontAwesome name="refresh" spin/>
-            </div>}
+              {isPosting && <div className="overlay">
+                <FontAwesome name="refresh" spin />
+              </div>}
+            </div>
           </div>
         </section>
 

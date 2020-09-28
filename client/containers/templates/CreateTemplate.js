@@ -94,14 +94,16 @@ export class CreateTemplateComponent extends Component {
         </div>
 
         <section className="content">
-          <div className="box box-primary">
-            <div className="box-body">
-              {page === 1 && <CreateTemplateForm passResetToState={this.passResetToState} textEditorType={type} validationFailed={this.validationFailed} nextPage={this.nextPage} initialValues={this.state.initialFormValues} />}
-              {page === 2 && <PreviewTemplateForm form={this.props.form} lastPage={this.lastPage} handleSubmit={this.handleSubmit} submitting={this.props.isPosting} />}
+          <div className="container-fluid">
+            <div className="card">
+              <div className="card-body">
+                {page === 1 && <CreateTemplateForm passResetToState={this.passResetToState} textEditorType={type} validationFailed={this.validationFailed} nextPage={this.nextPage} initialValues={this.state.initialFormValues} />}
+                {page === 2 && <PreviewTemplateForm form={this.props.form} lastPage={this.lastPage} handleSubmit={this.handleSubmit} submitting={this.props.isPosting} />}
+              </div>
+              {this.props.isPosting || this.props.isGetting && <div className="overlay">
+                <FontAwesome name="refresh" spin />
+              </div>}
             </div>
-            {this.props.isPosting || this.props.isGetting && <div className="overlay">
-              <FontAwesome name="refresh" spin/>
-            </div>}
           </div>
         </section>
 

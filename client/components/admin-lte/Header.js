@@ -7,75 +7,71 @@ const Header = props => { // eslint-disable-line no-unused-vars
   const { user, ws_notification, consumeNotification } = props;
   return (
     <nav className="main-header navbar navbar-expand navbar-white navbar-light">
-       <ul className="navbar-nav">
-         <li className="nav-item">
-           <a className="nav-link" data-widget="pushmenu" href="#">
-             <i className="fas fa-bars"/>
-             </a>
+      <ul className="navbar-nav">
+        <li className="nav-item">
+          <a className="nav-link" data-widget="pushmenu" href="#">
+            <i className="fas fa-bars" />
+          </a>
         </li>
-        </ul>
-        {/* <a className="sidebar-toggle" href="#" data-toggle="offcanvas">
-          <span className="sr-only">Toggle navigation</span>
-        </a> */}
-         <ul className="navbar-nav ml-auto">
+      </ul>
+      <ul className="navbar-nav ml-auto">
 
-            <li className="dropdown notifications-menu">
-              <a href="#" className="dropdown-toggle" data-toggle="dropdown">
-                <i className="fa fa-bell-o"/>
-                <span className="label label-warning">{ws_notification.length || ''}</span>
-              </a>
-              <ul className="dropdown-menu">
-                <li className="header">You have {ws_notification.length || 'no new'} notification{ws_notification.length === 1 ? '' : 's'}</li>
-                <li>
-                  <ul className="menu" style={{
-                    'overflow': 'hidden',
-                    'width': '100%',
-                    'height': '200px'
-                  }}>
+        <li className="nav-item dropdown">
+          <a href="#" className="nav-link" data-toggle="dropdown" aria-expanded="false" >
+            <i className="far fa-bell" />
+            <span className="badge badge-warning navbar-badge">{ws_notification.length || ''}</span>
+          </a>
+          <div className="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+            <span className="dropdown-header">You have {ws_notification.length || 'no new'} notification{ws_notification.length === 1 ? '' : 's'}</span>
+            <div className="dropdown-divider" />
+            {ws_notification.map((notification, i) => {
+              return (
+                <WSNotification key={`ws-notification${i}`}
+                  url={notification.url}
+                  message={notification.message}
+                  consumeNotification={consumeNotification}
+                  index={i} icon={notification.icon}
+                  iconColour={notification.iconColour} />
+              );
+            })}
 
-                  {ws_notification.map((notification, i) => {
-                    return (
-                      <WSNotification key={`ws-notification${i}`}
-                        url={notification.url}
-                        message={notification.message}
-                        consumeNotification={consumeNotification}
-                        index={i} icon={notification.icon}
-                        iconColour={notification.iconColour} />
-                    );
-                  })}
+            <div className="dropdown-divider" />
+            <a href="#" className="dropdown-item dropdown-footer">See All Notifications</a>
+          </div>
+        </li>
 
-                  </ul>
-                </li>
-              </ul>
-            </li>
+        <li className="nav-item dropdown">
+          <a href="#" className="nav-link" data-toggle="dropdown" aria-expanded="false" >
+            <i className="far fa-user" />
+          </a>
 
-            <li className="dropdown user user-menu">
-              <a className="dropdown-toggle" href="#" data-toggle="dropdown">
-                <img className="user-image" src={user.picture} alt="User Image"/>
-                <span className="hidden-xs">{user.email}</span>
-              </a>
-              <ul className="dropdown-menu">
-                <li className="user-header">
-                  <img className="img-circle" src={user.picture} alt="User Image"/>
-                  <p>{user.name}</p>
+          <div className="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+            <a href="#" className="dropdown-item">
+
+              <div className="media">
+                <img className="img-size-50 mr-3 img-circle" src={user.picture} alt="User Image" />
+
+                <div className="media-body">
+                  <h3 className="dropdown-item-title">
+                    {user.name}
+                  </h3>
                   <p>{user.email}</p>
-                </li>
-                <li className="user-footer">
-                  <div className="pull-right">
-                    <a className="btn btn-default btn-flat" href="/logout">Sign out</a>
-                  </div>
-                </li>
-              </ul>
-            </li>
-
-            <li>
-              <a href="#" data-toggle="control-sidebar">
-                <i className="fa fa-gears" />
-              </a>
-            </li>
-
-          </ul>
-      </nav>
+                </div>
+              </div>
+            </a>
+            <div className="dropdown-divider" />
+            <a href="#" className="dropdown-item">
+              <a className="btn btn-block btn-danger" href="/logout">Sign out</a>
+            </a>
+          </div>
+        </li>
+        <li className="nav-item">
+          <a className="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
+          <i className="fas fa-cogs" />
+          </a>
+        </li>
+      </ul>
+    </nav>
   );
 };
 

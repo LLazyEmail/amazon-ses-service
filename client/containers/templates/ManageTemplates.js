@@ -45,7 +45,7 @@ export class ManageTemplatesComponent extends Component {
 
   getTemplateView(row) {
     // Send user to the campaign view container
-      this.props.history.push(`/templates/manage/${row.slug}`);
+    this.props.history.push(`/templates/manage/${row.slug}`);
   }
 
   render() {
@@ -58,13 +58,15 @@ export class ManageTemplatesComponent extends Component {
         </div>
 
         <section className="content">
-          <div className="box box-primary">
-            <div className="box-body">
-              <ManageTemplatesTable data={this.props.templates} deleteRows={this.deleteRows} getTemplateView={this.getTemplateView}/>
+          <div className="container-fluid">
+            <div className="card">
+              <div className="card-body">
+                <ManageTemplatesTable data={this.props.templates} deleteRows={this.deleteRows} getTemplateView={this.getTemplateView} />
+              </div>
+              {this.props.isGetting && <div className="overlay">
+                <FontAwesome name="refresh" spin />
+              </div>}
             </div>
-            {this.props.isGetting && <div className="overlay">
-              <FontAwesome name="refresh" spin/>
-            </div>}
           </div>
         </section>
 

@@ -128,7 +128,6 @@ class RouterConfig extends Component {
     const { history, location} = this.props;
 
     return (
-      <>
         <App history={history} location={location}>
           <Switch>
             <OnEnter path="/" exact onEnter={this.onEnter} component={Dashboard} />
@@ -144,7 +143,6 @@ class RouterConfig extends Component {
             <Route path="*" component={NotFound} />
           </Switch>
         </App>
-      </>
     );
   }
 }

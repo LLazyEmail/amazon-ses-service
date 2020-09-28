@@ -83,50 +83,51 @@ export class CreateListComponent extends Component {
         </div>
 
         <section className="content">
+          <div className="container-fluid">
+            <Row>
+              <Col xs={12} md={12}>
 
-          <Row>
-            <Col xs={12} md={12}>
-
-              <div className="box box-primary">
-                <Row>
-                  <Col md={12}>
-                    <div className="box-header">
-                      <h3 className="box-title">List name</h3>
-                    </div>
-
-                    <div className="box-body">
-
-                      <div className="nav-tabs-custom">
-                        <ul className="nav nav-tabs pull-right">
-                          {/*<li className="">
-                            <a href="#tab_1-1" data-toggle="tab">Add single email</a>
-                          </li>*/}
-                          <li className="pull-left header">
-                            <i className="fa fa-th"/>
-                            Import a list
-                          </li>
-                        </ul>
-
-
-                        <form role="form" onSubmit={this.handleFormSubmit}>
-                          <div className="form-group">
-                            <input className="form-control" id="title" placeholder="The name of this list" type="text" value={this.state.title} onChange={this.handleChange} />
-                          </div>
-                        </form>
-                        <ImportCSV handleCSVSubmit={this.handleCSVSubmit} notification={this.notification}/>
+                <div className="card">
+                  <Row>
+                    <Col md={12}>
+                      <div className="card-header">
+                        <h3 className="card-title">List name</h3>
                       </div>
 
-                    </div>
-                </Col>
-              </Row>
+                      <div className="card-body">
 
-            {this.props.isGetting && <div className="overlay">
-              <FontAwesome name="refresh" spin/>
-            </div>}
+                        <div className="nav-tabs-custom">
+                          <ul className="nav nav-tabs pull-right">
+                            {/*<li className="">
+                            <a href="#tab_1-1" data-toggle="tab">Add single email</a>
+                          </li>*/}
+                            <li className="pull-left header">
+                              <i className="fa fa-th" />
+                            Import a list
+                          </li>
+                          </ul>
+
+
+                          <form role="form" onSubmit={this.handleFormSubmit}>
+                            <div className="form-group">
+                              <input className="form-control" id="title" placeholder="The name of this list" type="text" value={this.state.title} onChange={this.handleChange} />
+                            </div>
+                          </form>
+                          <ImportCSV handleCSVSubmit={this.handleCSVSubmit} notification={this.notification} />
+                        </div>
+
+                      </div>
+                    </Col>
+                  </Row>
+
+                  {this.props.isGetting && <div className="overlay">
+                    <FontAwesome name="refresh" spin />
+                  </div>}
+                </div>
+
+              </Col>
+            </Row>
           </div>
-
-          </Col>
-          </Row>
         </section>
       </div>
     );

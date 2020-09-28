@@ -16,18 +16,18 @@ export class DashboardComponent extends Component {
     const totalSentCount = this.props.campaigns.reduce((total, campaign) => total + campaign['campaignanalytic.totalSentCount'], 0);
 
     return (
-      <div>
+      <>
         <section className="content-header">
           <h1>Dashboard <small>An overview of your lists and campaigns</small></h1>
         </section>
         <section className="content">
-
-          <UserInfo user={this.props.user} totalSentCount={totalSentCount} />
-          <ManageCampaignsBox history={this.props.history} />
-          <ManageListsBox />
-
+          <div className="container-fluid">
+            <UserInfo user={this.props.user} totalSentCount={totalSentCount} />
+            <ManageCampaignsBox history={this.props.history} />
+            <ManageListsBox />
+          </div>
         </section>
-      </div>
+      </>
     );
   }
 }

@@ -11,7 +11,9 @@ const ManageCampaigns = (props) => {
       </div>
 
       <section className="content">
-        <ManageCampaignsBox history={props.history} />
+        <div className="container-fluid">
+          <ManageCampaignsBox history={props.history} />
+        </div>
       </section>
     </div>
   );

@@ -20,11 +20,11 @@ const renderMultiselect = ({ input, ...rest }) =>
     {...rest}/>;
 */
 
-const savedLabel = <div className="label label-success">Saved</div>;
-const notSavedLabel = <div className="label label-danger">Not saved</div>;
+const savedLabel = <span className="label label-success label-saved-data">Saved</span>;
+const notSavedLabel = <span className="label label-danger label-not-saved-data">Not saved</span>;
 
 export const renderSettingsDropdownList = ({ input, label, type, meta: { touched, error, warning }, exists, helpText, ...data }) => (
-  <div style={{ marginBottom: "1em" }}>
+  <div className="form-group">
     <label>{label} - { exists ? savedLabel : notSavedLabel }</label>
     <p className="form-text text-muted">{helpText}</p>
     <div>
@@ -35,7 +35,7 @@ export const renderSettingsDropdownList = ({ input, label, type, meta: { touched
 );
 
 export const renderDropdownList = ({ input, label, type, meta: { touched, error, warning }, ...data }) => (
-  <div>
+  <div className="form-group">
     <label>{label}</label>
     <div>
       <DropdownList {...input} {...data} />
@@ -45,7 +45,7 @@ export const renderDropdownList = ({ input, label, type, meta: { touched, error,
 );
 
 export const renderCombobox = ({ input, label, type, meta: { touched, error, warning }, ...data }) => (
-  <div>
+  <div className="form-group">
     <label>{label}</label>
     <div>
       <Combobox {...input} {...data} suggest={true} filter="contains" />
@@ -56,7 +56,7 @@ export const renderCombobox = ({ input, label, type, meta: { touched, error, war
 
 export const renderSettingsField = ({ input, label, type, meta: { touched, error, warning }, exists, helpText, placeholder }) => {
   return (
-  <div style={{ marginBottom: "1em" }}>
+  <div className="form-group">
     <label>{label} - { exists ? savedLabel : notSavedLabel }</label>
     <p className="form-text text-muted">{helpText}</p>
     <div>
@@ -68,7 +68,7 @@ export const renderSettingsField = ({ input, label, type, meta: { touched, error
 
 export const renderField = ({ input, label, type, meta: { touched, error, warning } }) => {
   return (
-  <div>
+  <div className="form-group">
     <label>{label}</label>
     <div>
       <input className={getInputClassFromType(type)} {...input} placeholder={label} type={type}/>
@@ -78,7 +78,7 @@ export const renderField = ({ input, label, type, meta: { touched, error, warnin
 )};
 
 export const renderEditorTypeRadio = ({ input, label, type, meta: { touched, error, warning } }) => (
-  <div>
+  <div className="form-group">
     <label>{label}</label>
     <div className="form-group">
       <label><Field component="input" type="radio" name={input.name} value="Plaintext" /> Plaintext</label>
@@ -91,7 +91,7 @@ export const renderEditorTypeRadio = ({ input, label, type, meta: { touched, err
 );
 
 export const renderTextEditor = ({ input, label, type, meta: { touched, error, warning }, textEditorValue, textEditorType, emailBody }) => (
-  <div>
+  <div className="form-group">
     <label>{label}</label>
     <div>
       <Field name={emailBody ? emailBody : 'emailBody'} value={() => input.value} onChange={() => input.onChange} component={TextEditor} textEditorValue={textEditorValue} textEditorType={textEditorType} />

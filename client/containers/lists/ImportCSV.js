@@ -113,8 +113,8 @@ export class ImportCSVComponent extends Component {
           ? <Row>
               <Col md={12}>
 
-                <div className="box-header">
-                  <h3 className="box-title">Initiating upload...</h3>
+                <div className="card-header">
+                  <h3 className="card-title">Initiating upload...</h3>
 
                   <div className="progress">
                     <div style={{ width: `${this.props.upload}%` }} className="progress-bar progress-bar-aqua" role="progressbar" aria-valuenow={this.props.upload} aria-valuemin="0" aria-valuemax="100">
@@ -123,7 +123,7 @@ export class ImportCSVComponent extends Component {
                   </div>
                 </div>
 
-                <div className="box-body">
+                <div className="card-body">
                   <p>Loading...</p>
                 </div>
 
@@ -133,12 +133,12 @@ export class ImportCSVComponent extends Component {
           : <Row>
           <Col md={12}>
 
-            <div className="box-header">
+            <div className="card-header">
               <h2>Import CSV</h2>
-              <h3 className="box-title">Please ensure the first row of the CSV file contains column names. This row must contain an email header.</h3>
+              <h3 className="card-title">Please ensure the first row of the CSV file contains column names. This row must contain an email header.</h3>
             </div>
 
-            <div className="box-body">
+            <div className="card-body">
             {/*The label as been put in place of the input and the input is hidden
               we can't style a file input but we can style its label
               and clicking the label is equivalent to clicking the input*/}
@@ -150,7 +150,7 @@ export class ImportCSVComponent extends Component {
               <SubscribersTable fields={this.state.fields} subscribers={this.state.subscribers} deleteSubscriber={this.deleteSubscriber.bind(this)}/>
             </div>
 
-            <div className="box-footer">
+            <div className="card-footer">
               <div className="btn-group">
                 {this.state.subscribers && <button style={{ margin: "1em", width: "160px" }} className="btn pull-left btn-lg btn-success" type="submit" onClick={this.handleSubmit.bind(this)}>Submit</button>}
 

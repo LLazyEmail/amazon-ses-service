@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react';
-import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Cookies, withCookies } from 'react-cookie';
+import { withCookies } from 'react-cookie';
 
 import App from './containers/App';
 // Dashboard
@@ -38,20 +38,7 @@ import NotFound from './components/404';
 const mapStateToProps = (state) => ({
   activeAccount: state.activeAccount
 });
-
-// const MainRoute = () =>{
-//   return (
-
-//   )
-// }
-
-const TestComponent = (props) => {
-  return (
-    <div>Location {props.location.pathname}</div>
-  )
-};
-
-const CampaignsRoutes = (props) => {
+const CampaignsRoutes = () => {
   return (
     <Switch>
       <Route path="/campaigns/create" component={CreateCampaign} />
@@ -101,6 +88,10 @@ const PermissionsRoutes = () => (
   </Switch>
 );
 
+function OnEnter({ onEnter, ...rest }) {
+  return onEnter() ? (<Route {...rest} />) : (<Redirect to={{ pathname: '/404' }} />);
+}
+
 class RouterConfig extends Component {
 
   static propTypes = {
@@ -115,128 +106,48 @@ class RouterConfig extends Component {
     this.onEnter = this.onEnter.bind(this);
   }
 
-  onEnter(nextState, replace) {
+  onEnter() {
     const accountIsActive = !!this.props.activeAccount.email;
+    const { pathname } = this.props.location;
+    
     if (accountIsActive) {
-      const urlPathLength = nextState.routes.length;
+      const urlPathLength = pathname.length;
       if (urlPathLength === 1) { // Is dashboard
-        replace('/404');
-      } else {
-        if (!this.props.activeAccount[nextState.routes[1].path] || this.props.activeAccount[nextState.routes[1].path] === 'none') {
-          replace('/404');
+        return false
+      }
+      else {
+        if (!this.props.activeAccount[pathname] || this.props.activeAccount[pathname] === 'none') {
+          return false;
         }
       }
     }
+    return true;
   }
-
   render() {
 
-    const { history, location, match } = this.props;
+    const { history, location} = this.props;
 
     return (
-      <>
         <App history={history} location={location}>
           <Switch>
-            <Route path="/" exact component={Dashboard} />
+            <OnEnter path="/" exact onEnter={this.onEnter} component={Dashboard} />
 
-            <Route path="/campaigns" component={CampaignsRoutes} />
-            <Route path="/templates" component={TemplatesRoutes} />
-            <Route path="/lists" component={ListsRoutes} />
-            <Route path="/analytics" component={AnalyticsRoutes} />
-            <Route path="/accountsManagement" component={AccountsManagementRoutes} />
-            <Route path="/permissions" component={PermissionsRoutes} />
+            <OnEnter path="/campaigns" onEnter={this.onEnter} component={CampaignsRoutes} />
+            <OnEnter path="/templates" onEnter={this.onEnter} component={TemplatesRoutes} />
+            <OnEnter path="/lists" onEnter={this.onEnter} component={ListsRoutes} />
+            <OnEnter path="/analytics" onEnter={this.onEnter} component={AnalyticsRoutes} />
+            <OnEnter path="/accountsManagement" onEnter={this.onEnter} component={AccountsManagementRoutes} />
+            <OnEnter path="/permissions" onEnter={this.onEnter} component={PermissionsRoutes} />
+
             <Route path="/settings" component={Settings} />
             <Route path="*" component={NotFound} />
           </Switch>
         </App>
-
-
-
-        {/* <Route path="/" render={(props) => { 
-            console.log("props", props);
-           return (<App cookies={this.props.cookies} {...props} />)} }
-           component={App}
-           >
-             <Route component={TestComponent} />
-          </Route> */}
-
-
-        {/* <Switch>
-          <Route render={(props) => <App {...props} cookies={this.props.cookies} />} />
-        </Switch> */}
-        {/* <Switch>
-        <Route render={(props) => <App {...props} cookies={this.props.cookies} />} />
-          <Route path="/" exact component={Dashboard} onEnter={this.onEnter} />
-        </Switch> */}
-
-
-
-        {/* <Switch>
-
-        
-          <Route path="/" render={(props) => { 
-            console.log("props", props);
-           return (<App cookies={this.props.cookies} {...props} />)} }
-           >
-             {/* <App /> 
-             <App cookies={this.props.cookies} />
-            <Route path="/" component={Dashboard} onEnter={this.onEnter} />
-
-             
-             </Route> 
-          {/*
-            <Router history={history}>
-             <Route exact path="/" component={App}>
-            <Route exact component={Dashboard} onEnter={this.onEnter} />
-            
-            <Route path="campaigns" onEnter={this.onEnter} >
-              <Route path="create" component={CreateCampaign} />
-              <Route path="manage" component={ManageCampaigns} />
-              <Route path="manage/:slug" component={CampaignView} />
-            </Route>
-
-            <Route path="templates" onEnter={this.onEnter} >
-              <Route path="create" component={CreateTemplate} />
-              <Route path="manage" component={ManageTemplates} />
-              <Route path="manage/:slug" component={TemplateView} />
-            </Route>
-
-            <Route path="lists" onEnter={this.onEnter} >
-              <Route path="create" component={CreateList} />
-              <Route path="manage" component={ManageLists} />
-              <Route path="manage/:listId" component={ManageListSubscribers} />
-            </Route>
-
-            <Route path="analytics" onEnter={this.onEnter} >
-              <Route path="reports" component={CampaignReports} />
-            </Route>
-
-            <Route path="accountsManagement" onEnter={this.onEnter} >
-              <Route path="createAccount" component={CreateAccount} />
-              <Route path="deleteAccount" component={DeleteAccount} />
-            </Route>
-
-            <Route path="permissions" onEnter={this.onEnter} >
-              <Route path="grant" component={GrantPermissions} />
-              <Route path="offered" component={OfferedPermissions} />
-              <Route path="received" component={ReceivedPermissions} />
-            </Route>
-
-            <Route path="settings" component={Settings} onEnter={this.onEnter} />
-
-            <Route path="*" component={NotFound} />
-          </Route> 
-        </Switch>
-        </Router>*/}
-      </>
     );
   }
 }
 
-const ConnectedRouterConfig = connect(mapStateToProps, null)(RouterConfig);
-
-
-
+const ConnectedRouterConfig = withCookies(connect(mapStateToProps, null)(RouterConfig));
 
 export default function (props) {
   const { history } = props;
@@ -246,5 +157,4 @@ export default function (props) {
       <Route path="/" component={ConnectedRouterConfig} />
     </Router>
   )
-
 }

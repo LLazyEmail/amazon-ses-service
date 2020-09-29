@@ -4,6 +4,10 @@ const sponsorBottom = require('../hackernoon-template/sponsor-bottom');
 
 const sponsorAblyTopBottom = require('../hackernoon-template-copy/sponsor');
 
+const thematicSponsorTop = require('../thematic-template/sponsorTop');
+const thematicSponsorBottom = require('../thematic-template/sponsorBottom');
+
+
 module.exports = function(sequelize, DataTypes) {
     let sponsor = sequelize.define('sponsor', {
         sponsorName: DataTypes.STRING,
@@ -40,6 +44,20 @@ module.exports = function(sequelize, DataTypes) {
               sponsorName: 'ably',
               sponsorTop: sponsorAblyTopBottom,
               sponsorBottom: sponsorAblyTopBottom
+            });
+          }
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+
+        sponsor.findOne({where:{sponsorName: 'scoutApm'}})
+        .then((sponsorName)=>{
+          if(sponsorName === null){
+              sponsor.create({
+              sponsorName: 'scoutApm',
+              sponsorTop: thematicSponsorTop,
+              sponsorBottom: thematicSponsorBottom
             });
           }
         })

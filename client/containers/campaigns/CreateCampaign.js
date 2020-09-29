@@ -106,9 +106,9 @@ export class CreateCampaignComponent extends Component {
     }
   }
 
-  applySponsor(sponsor){
-    if(!sponsor){
-      this.props.notify({message: 'You have not selected a valid template'});
+  applySponsor(sponsor) {
+    if (!sponsor) {
+      this.props.notify({ message: 'You have not selected a valid template' });
     }
 
     this.setState({
@@ -132,7 +132,7 @@ export class CreateCampaignComponent extends Component {
   render() {
     const { page, initialFormValues } = this.state;
     const { lists, templates, sponsors, form, isGetting, isPosting } = this.props;
-    
+
     const type = (this.props.form && this.props.form.values.type) ? this.props.form.values.type : this.state.initialFormValues.type;
 
     return (
@@ -144,29 +144,31 @@ export class CreateCampaignComponent extends Component {
         </div>
 
         <section className="content">
-          <div className="box box-primary">
-            <div className="box-body">
-              {page === 1 &&
-                <CreateCampaignForm
-                  passResetToState={this.passResetToState}
-                  textEditorType={type}
-                  applyTemplate={this.applyTemplate}
-                  applySponsor={this.applySponsor}
-                  templates={templates}
-                  sponsors={sponsors}
-                  lists={lists}
-                  nextPage={this.nextPage}
-                  initialValues={initialFormValues} />}
-              {page === 2 &&
-                <PreviewCampaignForm
-                  form={form}
-                  lastPage={this.lastPage}
-                  handleSubmit={this.handleSubmit} />}
-            </div>
+          <div className="container-fluid">
+            <div className="card">
+              <div className="card-body">
+                {page === 1 &&
+                  <CreateCampaignForm
+                    passResetToState={this.passResetToState}
+                    textEditorType={type}
+                    applyTemplate={this.applyTemplate}
+                    applySponsor={this.applySponsor}
+                    templates={templates}
+                    sponsors={sponsors}
+                    lists={lists}
+                    nextPage={this.nextPage}
+                    initialValues={initialFormValues} />}
+                {page === 2 &&
+                  <PreviewCampaignForm
+                    form={form}
+                    lastPage={this.lastPage}
+                    handleSubmit={this.handleSubmit} />}
+              </div>
 
-            {isGetting || isPosting && <div className="overlay">
-              <FontAwesome name="refresh" spin/>
-            </div>}
+              {isGetting || isPosting && <div className="overlay">
+                <FontAwesome name="refresh" spin />
+              </div>}
+            </div>
           </div>
         </section>
 

@@ -3,12 +3,12 @@ import React, { PropTypes } from 'react';
 const UserInfo = props => {
   const { user, totalSentCount } = props;
   return (
-    <div className="box box-primary">
-      <div className="box-header">
-        <h3 className="box-title">{`Welcome ${user.name}`}</h3>
+    <div className="card">
+      <div className="card-header">
+        <h3 className="card-title">{`Welcome ${user.name}`}</h3>
       </div>
 
-      <div className="box-body">
+      <div className="card-body">
         <p>{user.email}</p>
         <p>Total emails sent: {totalSentCount}</p>
       </div>

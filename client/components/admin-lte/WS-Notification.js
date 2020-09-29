@@ -6,15 +6,15 @@ import { Link } from 'react-router-dom';
 const WSNotification = props => { // eslint-disable-line no-unused-vars
   const { message, icon, iconColour, consumeNotification, index, url } = props;
   return (
-    <li onClick={() => consumeNotification(index)}>
-      <Link to={url || '#'}>
-        <a data-tip={message} data-for={`ws-${index}`}>
-          <i className={`fa ${icon || 'fa-users'} ${iconColour || 'text-green'}`} /> {message}
-        </a>
-      </Link>
-
-      <ReactTooltip id={`ws-${index}`} place="top" type="dark" effect="float" />
-    </li>
+    <>
+      <div className="dropdown-divider"/>
+      <a className="dropdown-item" onClick={() => consumeNotification(index)}>
+        <Link to={url || '#'}>
+            <i className={`fas ${icon || 'fa-users'} `} /> {message}
+        </Link>
+        <ReactTooltip id={`ws-${index}`} place="top" type="dark" effect="float" />
+      </a>
+    </>
   );
 };
 

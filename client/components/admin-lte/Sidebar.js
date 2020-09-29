@@ -21,26 +21,15 @@ const Sidebar = (props) => { // eslint-disable-line no-unused-vars
 
   return (
     <aside className="main-sidebar sidebar-dark-primary">
-      <a href="#" className=".brand-link">
-        <span className="logo-mini">
-          <strong>MfG</strong>
-        </span>
-        <span className="logo-lg">
-          <strong>Mail for Good <i className="fa fa-free-code-camp" /></strong>
-        </span>
-      </a>
       <div className="sidebar">
-
         <div className="user-panel mt-3 pb-3 mb-3 d-flex">
           <div className="image">
             <img src={user.picture || 'https://placeholdit.imgix.net/~text?txtsize=15&txt=160%C3%97160&w=160&h=160'} className="img-circle elevation-2" alt="User Image" />
-              </div>
-            <div className="info">
-              {/* <a href="#" className="d-block">Alexander Pierce</a> */}
-              <p>{user.name || 'Loading...'}</p>
-              <a><i className="fa fa-circle text-success" />Online</a>
-            </div>
           </div>
+          <div className="info">
+            <a>{user.name || 'Loading...'}</a>
+          </div>
+        </div>
         <nav className="mt-2">
           <ul className="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
             <li className="nav-header">OPTIONS</li>

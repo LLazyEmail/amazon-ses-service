@@ -59,15 +59,15 @@ export class ManageListsBoxComponent extends Component {
 
   render() {
     return (
-      <div className="box box-primary">
+      <div className="card">
         <ListSignupFormCreator subscribeKey={this.state.subscribeKey}
                                showModal={this.state.showListSignupFormCreator}
         />
-        <div className="box-header">
-          <h3 className="box-title">Your lists</h3>
+        <div className="card-header">
+          <h3 className="card-title">Your lists</h3>
         </div>
 
-        <div className="box-body">
+        <div className="card-body">
           <ManageListsTable data={this.props.lists}
             deleteRows={this.deleteRows}
             showListSignupFormCreator={this.showListSignupFormCreator.bind(this)}

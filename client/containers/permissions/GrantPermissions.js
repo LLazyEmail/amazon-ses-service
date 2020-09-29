@@ -63,8 +63,8 @@ export class GrantPermissionsComponent extends Component {
         </div>
 
         <section className="content col-md-6">
-          <div className="box box-primary">
-            <div className="box-body">
+          <div className="card">
+            <div className="card-body">
               <GrantPermissionForm handleSubmit={this.handleSubmit} initialValues={initialValues} />
             </div>
 

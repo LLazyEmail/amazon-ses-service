@@ -24,7 +24,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = { getBooleanForAssignedSettings, changeSettings, notify };
 
-const validate = values=> {
+const validate = values => {
   // See ref https://docs.aws.amazon.com/IAM/latest/APIReference/API_AccessKey.html
   const errors = {};
 
@@ -122,89 +122,90 @@ export class SettingsComponent extends Component {
         </section>
 
         <section className="content">
+          <div className="container-fluid">
+            <div className="row">
+              <div className="col-md-6">
 
-          <div className="row">
-            <div className="col-md-6">
-
-              {/* Start of Amazon SES form box */}
-              <div className="box box-primary">
-                <div className="box-header with-border">
-                  <h3 className="box-title">Amazon SES credentials</h3>
-                  <br /><br />
-                  {this.props.status &&
-                  <div>
-                    Error updating credentials: <br /> {this.props.status}
-                  </div>
-                  }
-                </div>
-
-                <form onSubmit={this.resetFormAndSubmit}>
-                  <div className="box-body">
-
-                    <Field
-                      exists={amazonSimpleEmailServiceAccessKey}
-                      name="accessKey"
-                      component={renderSettingsField}
-                      label="Access Key"
-                      type="text"
-                      placeholder="Example: AKIAIOSFODNN7EXAMPLE"
-                      helpText={<div><a target="_blank" href="https://aws.amazon.com/developers/access-keys/">Find out more about access keys</a></div>}
-                    />
-                    <Field
-                      exists={amazonSimpleEmailServiceSecretKey}
-                      name="secretAccessKey"
-                      component={renderSettingsField}
-                      label="Secret Access Key"
-                      type="text"
-                      placeholder="Example: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
-                      helpText={<div><a target="_blank" href="https://aws.amazon.com/developers/access-keys/">Find out more about secret access keys</a></div>}
-                    />
-                    <Field
-                      exists={email}
-                      name="email"
-                      component={renderSettingsField}
-                      label="SES email address"
-                      type="text"
-                      placeholder="Example: mysesemailaddress@gmail.com"
-                      helpText={<div>Configure your SES email address <a target="_blank" href="https://aws.amazon.com/developers/access-keys/">here.</a>This is almost always your sending/from email address.</div>}
-                    />
-                    <Field
-                      exists={region}
-                      name="region"
-                      component={renderSettingsDropdownList}
-                      data={regions}
-                      label="Amazon region associated with this email"
-                      helpText={<div>View your limits for <a target="_blank" href="https://us-west-2.console.aws.amazon.com/ses/home?region=us-west-2#dashboard:">us-west-2</a>, <a target="_blank" href="https://us-east-1.console.aws.amazon.com/ses/home?region=us-east-1#dashboard:">us-east-1</a>, or <a target="_blank" href="https://eu-west-1.console.aws.amazon.com/ses/home?region=eu-west-1#dashboard:">eu-west-1</a></div>}
-                    />
-                    <Field
-                      exists={whiteLabelUrl}
-                      name="whiteLabelUrl"
-                      component={renderSettingsField}
-                      label="White Label URL [optional]"
-                      type="text"
-                      placeholder="Example: https://email.myorganisation.com"
-                      helpText={<div>Display a custom URL for unsubscription and clickthrough tracking links by providing a white label URL (without the trailing backslash). This must be configured beforehand with your DNS hosting service.</div>}
-                    />
-
-                    <br/>
-                    <div className="box-footer">
-                      <div className="btn-group">
-                        <button className="btn btn-success btn-lg btn-hug" type="submit" disabled={pristine || submitting}>Submit</button>
-                        <button className="btn btn-danger btn-lg btn-hug" type="button" disabled={pristine || submitting} onClick={reset}>Reset</button>
+                {/* Start of Amazon SES form card */}
+                <div className="card">
+                  <div className="card-header with-border">
+                    <h3 className="card-title">Amazon SES credentials</h3>
+                    <br />
+                    {this.props.status &&
+                      <div>
+                        Error updating credentials: <br /> {this.props.status}
                       </div>
-                    </div>
-
+                    }
                   </div>
-                </form>
 
-                {this.props.loading &&
-                  <div className="overlay">
-                    <FontAwesome name="refresh" spin/>
-                </div>}
+                  <form onSubmit={this.resetFormAndSubmit}>
+                    <div className="card-body">
+
+                      <Field
+                        exists={amazonSimpleEmailServiceAccessKey}
+                        name="accessKey"
+                        component={renderSettingsField}
+                        label="Access Key"
+                        type="text"
+                        placeholder="Example: AKIAIOSFODNN7EXAMPLE"
+                        helpText={<div><a target="_blank" href="https://aws.amazon.com/developers/access-keys/">Find out more about access keys</a></div>}
+                      />
+                      <Field
+                        exists={amazonSimpleEmailServiceSecretKey}
+                        name="secretAccessKey"
+                        component={renderSettingsField}
+                        label="Secret Access Key"
+                        type="text"
+                        placeholder="Example: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
+                        helpText={<div><a target="_blank" href="https://aws.amazon.com/developers/access-keys/">Find out more about secret access keys</a></div>}
+                      />
+                      <Field
+                        exists={email}
+                        name="email"
+                        component={renderSettingsField}
+                        label="SES email address"
+                        type="text"
+                        placeholder="Example: mysesemailaddress@gmail.com"
+                        helpText={<div>Configure your SES email address <a target="_blank" href="https://aws.amazon.com/developers/access-keys/">here.</a>This is almost always your sending/from email address.</div>}
+                      />
+                      <Field
+                        exists={region}
+                        name="region"
+                        component={renderSettingsDropdownList}
+                        data={regions}
+                        label="Amazon region associated with this email"
+                        helpText={<div>View your limits for <a target="_blank" href="https://us-west-2.console.aws.amazon.com/ses/home?region=us-west-2#dashboard:">us-west-2</a>, <a target="_blank" href="https://us-east-1.console.aws.amazon.com/ses/home?region=us-east-1#dashboard:">us-east-1</a>, or <a target="_blank" href="https://eu-west-1.console.aws.amazon.com/ses/home?region=eu-west-1#dashboard:">eu-west-1</a></div>}
+                      />
+                      <Field
+                        exists={whiteLabelUrl}
+                        name="whiteLabelUrl"
+                        component={renderSettingsField}
+                        label="White Label URL [optional]"
+                        type="text"
+                        placeholder="Example: https://email.myorganisation.com"
+                        helpText={<div>Display a custom URL for unsubscription and clickthrough tracking links by providing a white label URL (without the trailing backslash). This must be configured beforehand with your DNS hosting service.</div>}
+                      />
+
+                      <br />
+                      <div className="card-footer">
+                        <div className="btn-group">
+                          <button className="btn btn-success btn-lg btn-hug" type="submit" disabled={pristine || submitting}>Submit</button>
+                          <button className="btn btn-danger btn-lg btn-hug" type="button" disabled={pristine || submitting} onClick={reset}>Reset</button>
+                        </div>
+                      </div>
+
+                    </div>
+                  </form>
+
+                  {this.props.loading &&
+                    <div className="overlay">
+                      <FontAwesome name="refresh" spin />
+                    </div>}
+                </div>
+                {/* End of Amazon SES form card */}
+
+                <div className="col-md-6" />
               </div>
-              {/* End of Amazon SES form box */}
-
-              <div className="col-md-6" />
             </div>
           </div>
         </section>

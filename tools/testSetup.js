@@ -10,7 +10,7 @@
 // Setting NODE_ENV to test instead of production because setting it to production will suppress error messaging
 // and propType validation warnings.
 require('dotenv').config();
-require("babel-polyfill");
+require("@babel/polyfill");
 process.env.NODE_ENV = 'test';
 
 // Disable webpack-specific features for tests since
@@ -21,4 +21,4 @@ process.env.NODE_ENV = 'test';
 
 // Register babel so that it will transpile ES6 to ES5
 // before our tests run.
-require('babel-register')();
+require('@babel/register')();

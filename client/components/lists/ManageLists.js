@@ -12,7 +12,9 @@ const ManageLists = () => {
       </div>
 
       <section className="content">
-        <ManageListsBox />
+        <div className="container-fluid">
+          <ManageListsBox />
+        </div>
       </section>
     </div>
   );

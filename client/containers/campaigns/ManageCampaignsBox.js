@@ -49,12 +49,12 @@ export class ManageCampaignsBoxComponent extends Component {
 
   render() {
     return (
-      <div className="box box-primary">
-        <div className="box-header">
-          <h3 className="box-title">Your campaigns</h3>
+      <div className="card">
+        <div className="card-header">
+          <h3 className="card-title">Your campaigns</h3>
         </div>
 
-        <div className="box-body">
+        <div className="card-body">
 
           <ManageCampaignsTable
             data={this.props.campaigns}

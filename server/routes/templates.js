@@ -5,7 +5,8 @@ const cookieParser = require('cookie-parser')();
 // Template controllers
 const getTemplates = require('../controllers/template/get-templates');
 // const createTemplate = require('../controllers/template/create-template');
-const createTemplate = require('../controllers/template/noonification-create-template');
+// const createTemplate = require('../controllers/template/noonification-create-template');
+const createTemplate = require('../controllers/template/thematic-create-template');
 const deleteTemplates = require('../controllers/template/delete-templates');
 
 // Middleware

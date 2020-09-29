@@ -8,7 +8,8 @@ const insertUnsubscribeLink = require('../lib/analytics').insertUnsubscribeLink;
 const insertTrackingPixel = require('../lib/analytics').insertTrackingPixel;
 const mailMerge = require('../lib/mail-merge');
 // const AmazonEmail = require('../lib/amazon');
-const AmazonEmail = require('../lib/hackernoon-amazon');
+// const AmazonEmail = require('../lib/hackernoon-amazon');
+const AmazonEmail = require('../lib/thematic-amazon');
 
 /**
  * @description Get a formatted amazonEmail

@@ -82,7 +82,7 @@ export class CampaignViewComponent extends Component {
 
   componentWillReceiveProps(nextProps) {
     // Set thisCampaign from campaigns once we have it
-   
+
     if (nextProps.campaigns && nextProps.campaigns.length && !this.props.campaigns.length) { // Guarded and statement that confirms campaigns is in the new props, confirms the array isn't empty, and then confirms that current props do not exist
       this.getSingleCampaign(nextProps);
     }
@@ -91,7 +91,7 @@ export class CampaignViewComponent extends Component {
     const sendCampaignResponseExists = !!nextProps.sendCampaignResponse;
 
     const justSentCampaign = !nextProps.isPostingSendCampaign && this.props.isPostingSendCampaign;
-    
+
     if (sendCampaignResponseExists && justSentCampaign) {
       this.setState({ haveShownMessage: true });
       if (nextProps.sendCampaignStatus === 200) {
@@ -125,10 +125,10 @@ export class CampaignViewComponent extends Component {
   }
 
   getSingleCampaign(props) {
-    
+
     // This method retrieves a single campaign from this.props.campaigns based on the parameter in the url
     const slug = this.props.match.params.slug;
-    
+
     const getCampaignBySlug = props.campaigns.find(campaign => campaign.slug === slug);
     this.setState({
       thisCampaign: getCampaignBySlug
@@ -145,7 +145,7 @@ export class CampaignViewComponent extends Component {
   }
 
   openSendModal() {
-    
+
     this.setState({
       showSendModal: true
     });
@@ -209,7 +209,7 @@ export class CampaignViewComponent extends Component {
       isPostingSendTest,
       isGetting
     } = this.props;
-    
+
     const downloadUnsentSubscribersUrl = encodeURI(`${window.location.origin}/api/campaign/subscribers/csv?campaignId=${thisCampaign.id}&sent=false`);
     const status = thisCampaign.status;
 
@@ -222,59 +222,61 @@ export class CampaignViewComponent extends Component {
         </div>
 
         <section className="content">
-          <div className="box box-primary">
-            <div className="box-header">
-              <h3 className="box-title">Campaign: {thisCampaign.name}</h3>
-            </div>
-
-            <div className="box-body">
-
-              {(sendCampaignResponse && haveShownMessage) &&
-                <p className={sendCampaignStatus === 200 ? 'text-green' : 'text-red'}>
-                  <i className={sendCampaignStatus === 200 ? 'fa fa-check' : 'fa fa-exclamation'}/> {sendCampaignResponse.split('.')[0]}.<br/> <br/> {sendCampaignResponse.split('.')[1]}.
-                </p>}
-
-              <PreviewCampaignForm campaignView={thisCampaign} />
-
-              <div className="form-inline">
-                <button disabled={!['ready', 'interrupted'].includes(status)} className="btn btn-success btn-lg" type="button" onClick={this.openSendModal}>Send</button>
-                <button className="btn btn-info btn-lg" style={{ "marginLeft": "1rem" }} type="button" onClick={this.openTestSendModal}>Send a test email</button>
-                <button className="btn btn-lg btn-primary" style={{ "marginLeft": "1rem" }} onClick={() => {window.location = downloadUnsentSubscribersUrl;}}>Export unsent</button>
-                <button disabled={status !== 'sending'} className="btn btn-danger btn-lg" style={{ "marginLeft": "1rem" }} type="button" onClick={this.stopSending.bind(this)}>Stop sending</button>
+          <div className="container-fluid">
+            <div className="card">
+              <div className="card-header">
+                <h3 className="card-title">Campaign: {thisCampaign.name}</h3>
               </div>
 
-              {/* Modal for sending test emails */}
-              <Modal show={showTestSendModal} onHide={this.closeTestSendModal}>
-                <Modal.Header closeButton>
-                  <Modal.Title>Send a test email</Modal.Title>
-                </Modal.Header>
+              <div className="card-body">
 
-                <Modal.Body>
-                  <input className="form-control" style={{ "marginLeft": "1rem" }} id="testEmail" placeholder="Send a test email to:" type="email" value={testEmail} onChange={this.handleChange} />
-                </Modal.Body>
+                {(sendCampaignResponse && haveShownMessage) &&
+                  <p className={sendCampaignStatus === 200 ? 'text-green' : 'text-red'}>
+                    <i className={sendCampaignStatus === 200 ? 'fa fa-check' : 'fa fa-exclamation'} /> {sendCampaignResponse.split('.')[0]}.<br /> <br /> {sendCampaignResponse.split('.')[1]}.
+                </p>}
 
-                <Modal.Footer>
-                  <Button onClick={this.closeTestSendModal}>Cancel</Button>
-                  <Button bsStyle="primary" onClick={this.sendTestEmail}>Send Test Email</Button>
-                </Modal.Footer>
-              </Modal>
+                <PreviewCampaignForm campaignView={thisCampaign} />
 
-              {/* Modal for sending email campaign */}
-              {<div>{this.state.showSendModal?'true':'false'}</div>}
-              <Modal show={this.state.showSendModal} onHide={this.closeSendModal}>
-                <Modal.Header closeButton>
-                  <Modal.Title>Are you ready to send this campaign to {thisCampaign.totalCampaignSubscribers ? thisCampaign.totalCampaignSubscribers.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") : 0} subscribers?</Modal.Title>
-                </Modal.Header>
+                <div className="form-inline">
+                  <button disabled={!['ready', 'interrupted'].includes(status)} className="btn btn-success btn-lg" type="button" onClick={this.openSendModal}>Send</button>
+                  <button className="btn btn-info btn-lg" style={{ "marginLeft": "1rem" }} type="button" onClick={this.openTestSendModal}>Send a test email</button>
+                  <button className="btn btn-lg btn-primary" style={{ "marginLeft": "1rem" }} onClick={() => { window.location = downloadUnsentSubscribersUrl; }}>Export unsent</button>
+                  <button disabled={status !== 'sending'} className="btn btn-danger btn-lg" style={{ "marginLeft": "1rem" }} type="button" onClick={this.stopSending.bind(this)}>Stop sending</button>
+                </div>
 
-                <Modal.Footer>
-                  <Button onClick={this.closeSendModal}>No</Button>
-                  <Button bsStyle="primary" onClick={this.handleSubmit}>Yes</Button>
-                </Modal.Footer>
-              </Modal>
+                {/* Modal for sending test emails */}
+                <Modal show={showTestSendModal} onHide={this.closeTestSendModal}>
+                  <Modal.Header closeButton>
+                    <Modal.Title>Send a test email</Modal.Title>
+                  </Modal.Header>
 
-              {isGetting || isPostingSendCampaign || isPostingSendTest && <div className="overlay">
-                <FontAwesome name="refresh" spin/>
-              </div>}
+                  <Modal.Body>
+                    <input className="form-control" style={{ "marginLeft": "1rem" }} id="testEmail" placeholder="Send a test email to:" type="email" value={testEmail} onChange={this.handleChange} />
+                  </Modal.Body>
+
+                  <Modal.Footer>
+                    <Button onClick={this.closeTestSendModal}>Cancel</Button>
+                    <Button bsStyle="primary" onClick={this.sendTestEmail}>Send Test Email</Button>
+                  </Modal.Footer>
+                </Modal>
+
+                {/* Modal for sending email campaign */}
+                {<div>{this.state.showSendModal ? 'true' : 'false'}</div>}
+                <Modal show={this.state.showSendModal} onHide={this.closeSendModal}>
+                  <Modal.Header closeButton>
+                    <Modal.Title>Are you ready to send this campaign to {thisCampaign.totalCampaignSubscribers ? thisCampaign.totalCampaignSubscribers.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") : 0} subscribers?</Modal.Title>
+                  </Modal.Header>
+
+                  <Modal.Footer>
+                    <Button onClick={this.closeSendModal}>No</Button>
+                    <Button bsStyle="primary" onClick={this.handleSubmit}>Yes</Button>
+                  </Modal.Footer>
+                </Modal>
+
+                {isGetting || isPostingSendCampaign || isPostingSendTest && <div className="overlay">
+                  <FontAwesome name="refresh" spin />
+                </div>}
+              </div>
             </div>
           </div>
         </section>
@@ -282,7 +284,7 @@ export class CampaignViewComponent extends Component {
     );
 
     const canRender = !!(thisCampaign);
-    
+
     return (
       <div>
         {canRender && renderCampaignView()}

@@ -62,18 +62,20 @@ export class TemplateViewComponent extends Component {
         </div>
 
         <section className="content">
-          <div className="box box-primary">
-            <div className="box-header">
-              <h3 className="box-title">Templates: {this.state.thisTemplate.name}</h3>
-            </div>
+          <div className="container-fluid">
+            <div className="card">
+              <div className="card-header">
+                <h3 className="card-title">Templates: {this.state.thisTemplate.name}</h3>
+              </div>
 
-            <div className="box-body">
+              <div className="card-body">
 
-              <PreviewTemplateForm templateView={this.state.thisTemplate} />
+                <PreviewTemplateForm templateView={this.state.thisTemplate} />
 
-              {this.props.isGetting && <div className="overlay">
-                <FontAwesome name="refresh" spin/>
-              </div>}
+                {this.props.isGetting && <div className="overlay">
+                  <FontAwesome name="refresh" spin />
+                </div>}
+              </div>
             </div>
           </div>
         </section>

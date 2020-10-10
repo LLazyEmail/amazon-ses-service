@@ -107,7 +107,7 @@
     "socket.io": "^2.3.0",
     "sqs-consumer": "^5.4.0",
     "ua-parser-js": "^0.7.21",
-    "webpack": "^4.43.0"
+    "webpack": "^5.0.0"
   },
   "devDependencies": {
     "@babel/cli": "7.11.6",

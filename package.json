@@ -106,7 +106,7 @@
     "slug": "^3.3.2",
     "socket.io": "^3.0.0",
     "sqs-consumer": "^5.4.0",
-    "ua-parser-js": "^0.7.21",
+    "ua-parser-js": "^0.8.0",
     "webpack": "^5.0.0"
   },
   "devDependencies": {
